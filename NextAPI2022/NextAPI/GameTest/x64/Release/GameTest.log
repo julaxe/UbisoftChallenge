@@ -1,0 +1,15 @@
+﻿  stdafx.cpp
+  app.cpp
+  main.cpp
+  SimpleController.cpp
+  SimpleSound.cpp
+  SimpleSprite.cpp
+  TextureLoader.cpp
+  GameTest.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 403 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  GameTest.vcxproj -> C:\Users\Julaxe\Downloads\NextAPI2022\NextAPI\x64\Release\GameTest.exe
+  C:\Users\Julaxe\Downloads\NextAPI2022\NextAPI\\GameTest\glut\bin\x64\freeglut.dll
+  1 File(s) copied
