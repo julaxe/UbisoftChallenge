@@ -51,6 +51,7 @@ Vector2 SceneNode::GetWorldPosition() const
 void SceneNode::AddChild(SceneNode* child)
 {
     m_children.push_back(child);
+    child->m_position = {0.0f, 0.0f};
     child->SetParent(this);
 }
 
@@ -67,6 +68,22 @@ void SceneNode::DeleteChild(SceneNode* child)
     }
     (*it)->Exit();
     m_children.erase(it);
+}
+
+void SceneNode::UpdateChildren(float dt)
+{
+    for(const auto child : m_children)
+    {
+        child->Update(dt);
+    }
+}
+
+void SceneNode::DrawChildren()
+{
+    for(const auto child : m_children)
+    {
+        child->Draw();
+    }
 }
 
 void SceneNode::SetParent(SceneNode* parent)

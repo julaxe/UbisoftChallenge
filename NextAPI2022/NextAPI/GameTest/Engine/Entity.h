@@ -5,7 +5,7 @@
 
 #include "SceneNode.h"
 
-class Entity : SceneNode
+class Entity : public SceneNode
 {
 public:
     //constructors
@@ -29,7 +29,7 @@ public:
 
 protected:
     //Texture
-    Vector3 m_color;
+    Vector3 m_color = {1.0f,1.0f,1.0f};
     float m_width = 0.0F;
     float m_height = 0.0F;
     unsigned int   m_texWidth = 0;

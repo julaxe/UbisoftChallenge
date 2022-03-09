@@ -7,11 +7,12 @@
 
 //-----------------------------------------------------------------------------
 
+#include "DebugManager.h"
 #include "../App/app.h"
 #include "../App/AppSettings.h"
 #include "../App/TextureLoader.h"
 
-std::map<const char *, CSimpleSprite::sTextureDef > CSimpleSprite::m_textures;
+std::map<const char *, Entity::sTextureDef > Entity::m_textures;
 
 
 Entity::Entity(const char* fileName, unsigned nColumns, unsigned nRows)
@@ -27,6 +28,8 @@ Entity::Entity(std::string name, const char* fileName, unsigned nColumns, unsign
 
 void Entity::Update(float dt)
 {
+    if(!IsActive()) return;
+    
     if (m_currentAnim >= 0)
     {
         m_animTime += dt/1000.0f;
@@ -39,11 +42,13 @@ void Entity::Update(float dt)
         int frame = (int)( m_animTime / anim.m_speed );
         SetFrame(anim.m_frames[frame]);        
     }
+    UpdateChildren(dt);
 }
 
 void Entity::Draw()
 {
-                
+    if(!IsActive()) return;
+    
 #if APP_USE_VIRTUAL_RES
     float scalex = m_scale.x / APP_VIRTUAL_WIDTH;
     float scaley = m_scale.y / APP_VIRTUAL_HEIGHT;
@@ -51,8 +56,8 @@ void Entity::Draw()
     float scalex = m_scale.x;
     float scaley = m_scale.y;
 #endif
-    float x = m_position.x;
-    float y = m_position.y;
+    float x = GetWorldPosition().x;
+    float y = GetWorldPosition().y;
 #if APP_USE_VIRTUAL_RES
     APP_VIRTUAL_TO_NATIVE_COORDS(x, y);
 #endif
@@ -77,6 +82,14 @@ void Entity::Draw()
     glPopMatrix();
     glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
+
+    //then draw children
+    DrawChildren();
+
+    if(DEBUG_ON)
+    {
+        DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width, m_height);
+    }
 }
 
 void Entity::SetFrame(unsigned f)
@@ -126,7 +139,7 @@ void Entity::CalculateUVs()
     int column = m_frame % m_nColumns;
 
     m_width = m_texWidth * u;
-    m_height = m_texWidth * v;
+    m_height = m_texHeight * v;
     m_uvcoords[0] = u * column;
     m_uvcoords[1] = v * (float)(row+1);
 
@@ -182,13 +195,13 @@ void Entity::InitEntity(const char* fileName, unsigned nColumns, unsigned nRows)
     if (LoadTexture(fileName))
     {
         CalculateUVs();
-        m_points[0] = -(m_width / 2.0f);
-        m_points[1] = -(m_height / 2.0f);
-        m_points[2] = m_width / 2.0f;
-        m_points[3] = -(m_height / 2.0f);
-        m_points[4] = m_width / 2.0f;
-        m_points[5] = m_height / 2.0f;
-        m_points[6] = -(m_width / 2.0f);
-        m_points[7] = m_height / 2.0f;
+        m_points[0] = -(m_width);
+        m_points[1] = -(m_height);
+        m_points[2] = m_width;
+        m_points[3] = -(m_height);
+        m_points[4] = m_width;
+        m_points[5] = m_height;
+        m_points[6] = -(m_width);
+        m_points[7] = m_height;
     }
 }

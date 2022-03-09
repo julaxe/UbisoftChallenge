@@ -4,10 +4,10 @@ class GameObject
 {
 public:
     virtual ~GameObject() = default;
-    virtual void Start();
-    virtual void Update(float dt);
-    virtual void Draw();
-    virtual void Exit();
+    virtual void Start() {}
+    virtual void Update(float dt) {}
+    virtual void Draw() {}
+    virtual void Exit() {}
 };
 
 struct Vector2

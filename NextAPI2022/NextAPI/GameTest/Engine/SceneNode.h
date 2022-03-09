@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "GameObject.h"
+#include "../app/AppSettings.h"
 
 class SceneNode : GameObject
 {
@@ -34,7 +35,8 @@ public:
     //relations
     void AddChild(SceneNode* child);
     void DeleteChild(SceneNode* child);
-    void SetParent(SceneNode* parent);
+    void UpdateChildren(float dt);
+    void DrawChildren();
 
 protected:
     //scene
@@ -42,8 +44,8 @@ protected:
     std::string m_name = "";
     
     //transform
-    Vector2 m_position;
-    Vector2 m_scale;
+    Vector2 m_position = {APP_VIRTUAL_WIDTH *0.5f, APP_VIRTUAL_HEIGHT * 0.5f};
+    Vector2 m_scale = {1.0f,1.0f};
     float m_angle = 0.0f;
 
     //relations
@@ -51,5 +53,6 @@ protected:
     std::vector<SceneNode*> m_children;
 
 protected:
+    void SetParent(SceneNode* parent);
     void RotateChildren(float angle);
 };

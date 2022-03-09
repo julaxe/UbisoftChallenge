@@ -32,3 +32,8 @@ void Scene::Exit()
         node->Exit();
     }
 }
+
+void Scene::AddRootNode(SceneNode* node)
+{
+    listOfRootNodes.push_back(node);
+}
