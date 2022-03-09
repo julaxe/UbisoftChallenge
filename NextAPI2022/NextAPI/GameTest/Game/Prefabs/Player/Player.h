@@ -12,4 +12,5 @@ public:
 
 private:
     Entity* m_sprite;
+    Entity* m_triangle;
 };

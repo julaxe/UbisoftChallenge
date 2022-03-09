@@ -20,6 +20,11 @@ Player::Player()
     m_sprite->CreateAnimation(ANIM_RIGHT, speed, {16,17,18,19,20,21,22,23});
     m_sprite->CreateAnimation(ANIM_BACKWARD, speed, {24,25,26,27,28,29,30,31});
     AddChild(m_sprite);
+
+    m_triangle = new Entity("triangle", ".\\TestData\\Triangle.bmp");
+    m_triangle->SetScale(0.2f, 0.2f);
+    m_sprite->AddChild(m_triangle);
+    m_triangle->SetPosition(100.f, 100.f);
 }
 
 void Player::HandleInput()
