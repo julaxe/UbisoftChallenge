@@ -24,7 +24,7 @@ Player::Player()
     m_triangle = new Entity("triangle", ".\\TestData\\Triangle.bmp");
     m_triangle->SetScale(0.2f, 0.2f);
     m_sprite->AddChild(m_triangle);
-    m_triangle->SetPosition(100.f, 100.f);
+    m_triangle->SetPosition(40.f, 40.f);
 }
 
 void Player::HandleInput()
@@ -52,6 +52,16 @@ void Player::HandleInput()
         newPosition.y -= speed;
     }
     m_sprite->SetPosition(newPosition.x, newPosition.y);
+
+    //angle
+    if(App::GetController().GetRightThumbStickX() > 0.5f)
+    {
+        m_sprite->SetAngle(m_sprite->GetAngle() + speed * 0.1f);
+    }
+    if(App::GetController().GetRightThumbStickX() < -0.5f)
+    {
+        m_sprite->SetAngle(m_sprite->GetAngle() - speed * 0.1f);
+    }
 }
 
 void Player::Update(float dt)

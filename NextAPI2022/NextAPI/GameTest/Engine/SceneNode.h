@@ -31,6 +31,8 @@ public:
     
     //local->world
     Vector2 GetWorldPosition() const;
+    float GetWorldRotation() const;
+    Vector2 GetWorldScale() const;
 
     //relations
     void AddChild(SceneNode* child);

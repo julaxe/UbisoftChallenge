@@ -50,11 +50,11 @@ void Entity::Draw()
     if(!IsActive()) return;
     
 #if APP_USE_VIRTUAL_RES
-    float scalex = m_scale.x / APP_VIRTUAL_WIDTH;
-    float scaley = m_scale.y / APP_VIRTUAL_HEIGHT;
+    float scalex = GetWorldScale().x / APP_VIRTUAL_WIDTH;
+    float scaley = GetWorldScale().y / APP_VIRTUAL_HEIGHT;
 #else
-    float scalex = m_scale.x;
-    float scaley = m_scale.y;
+    float scalex = GetWorldScale().x;
+    float scaley = GetWorldScale().y;
 #endif
     float x = GetWorldPosition().x;
     float y = GetWorldPosition().y;
@@ -65,7 +65,7 @@ void Entity::Draw()
     glPushMatrix();
     glTranslatef(x, y, 0.0f);   
     glScalef(scalex, scaley, 0.1f);    
-    glRotatef(m_angle * 180 / PI, 0.0f, 0.0f, 1.0f);     
+    glRotatef(GetWorldRotation() * 180 / PI, 0.0f, 0.0f, 1.0f);     
     glColor3f(m_color.x, m_color.y, m_color.z);
     glEnable(GL_BLEND);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);    
@@ -88,7 +88,7 @@ void Entity::Draw()
 
     if(DEBUG_ON)
     {
-        DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width, m_height);
+        DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width * GetWorldScale().x, m_height * GetWorldScale().y);
     }
 }
 

@@ -40,12 +40,37 @@ void SceneNode::SetAngle(float angle)
 Vector2 SceneNode::GetWorldPosition() const
 {
     Vector2 worldPos = m_position;
+    
     if(m_parent)
     {
-        worldPos.x += m_parent->GetWorldPosition().x;
-        worldPos.y += m_parent->GetWorldPosition().y;
+        const float parentAngle = m_parent->GetAngle();
+        const float newX = m_position.x * cosf(parentAngle) - m_position.y * sinf(parentAngle);
+        const float newY = m_position.x * sinf(parentAngle) + m_position.y * cosf(parentAngle);
+        worldPos.x = m_parent->GetWorldPosition().x + newX;
+        worldPos.y = m_parent->GetWorldPosition().y + newY;
     }
     return worldPos;
+}
+
+float SceneNode::GetWorldRotation() const
+{
+    float worldRotation = m_angle;
+    if(m_parent)
+    {
+        worldRotation += m_parent->GetWorldRotation();
+    }
+    return worldRotation;
+}
+
+Vector2 SceneNode::GetWorldScale() const
+{
+    Vector2 worldScale = m_scale;
+    if(m_parent)
+    {
+        worldScale.x *= m_parent->GetWorldScale().x;
+        worldScale.y *= m_parent->GetWorldScale().y;
+    }
+    return worldScale;
 }
 
 void SceneNode::AddChild(SceneNode* child)
