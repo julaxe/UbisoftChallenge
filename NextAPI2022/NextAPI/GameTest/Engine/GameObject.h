@@ -3,6 +3,7 @@
 class GameObject
 {
 public:
+    virtual ~GameObject() = default;
     virtual void Start();
     virtual void Update(float dt);
     virtual void Draw();

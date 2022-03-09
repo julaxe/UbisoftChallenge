@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "SceneNode.h"
 
-SceneNode::SceneNode()
+SceneNode::SceneNode(std::string name)
 {
-    
+    m_name = name;
 }
 
 void SceneNode::SetActive(bool state)

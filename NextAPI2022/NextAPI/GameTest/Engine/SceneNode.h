@@ -7,7 +7,12 @@
 class SceneNode : GameObject
 {
 public:
-    SceneNode();
+    SceneNode(std::string name = "NoName");
+
+    void Start() override {}
+    void Update(float dt) override {}
+    void Draw() override {}
+    void Exit() override {}
     
     //scene
     void SetActive(bool state);
