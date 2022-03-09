@@ -8,7 +8,7 @@ void DebugManager::DrawCollisionBox(float posX, float posY, float width, float h
     const float left = posX - width * 0.5f;
     const float right = posX + width * 0.5f;
     const float top = posY + height * 0.5f;
-    const float bottom = posY + height * 0.5f;
+    const float bottom = posY - height * 0.5f;
     
     App::DrawLine(left, bottom, right, bottom);
     App::DrawLine(right, bottom, right, top);

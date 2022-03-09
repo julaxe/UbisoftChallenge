@@ -19,16 +19,7 @@ void Init()
 
 void HandleInput()
 {
-	if(App::GetController().CheckButton(XINPUT_GAMEPAD_A, true))
-	{
-		SceneManager::ChangeScene(new GameScene());
-		std::cout << "Scene Changed" << std::endl;
-	}
-	if(App::GetController().CheckButton(XINPUT_GAMEPAD_B, true))
-	{
-		SceneManager::ChangeScene(new MainMenuScene());
-		std::cout << "Scene Changed" << std::endl;
-	}
+	
 }
 void Update(float deltaTime)
 {

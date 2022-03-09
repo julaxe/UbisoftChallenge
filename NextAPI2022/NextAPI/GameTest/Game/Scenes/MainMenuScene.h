@@ -3,6 +3,8 @@
 #include "../../Engine/Entity.h"
 #include "../../Engine/Scene.h"
 #include "../../Engine/Text.h"
+#include "../Prefabs/Buttons/GameSceneButton.h"
+#include "../Prefabs/Buttons/MainMenuButton.h"
 
 class MainMenuScene :public Scene
 {
@@ -12,5 +14,5 @@ private:
     Entity* m_player;
     Entity* m_background;
     Text* m_testText;
-    Button* m_buttonTest;
+    GameSceneButton* m_buttonTest;
 };

@@ -1,3 +1,15 @@
 NextAPI2022/NextAPI/.vs/
 NextAPI2022/NextAPI/GameTest/x64/Release/
 NextAPI2022/NextAPI/x64/
+*.obj
+*.tlog
+NextAPI2022/NextAPI/GameTest/x64/Debug/vc142.pdb
+NextAPI2022/NextAPI/GameTest/x64/Debug/vc142.idb
+NextAPI2022/NextAPI/GameTest/x64/Debug/GameTest.vcxproj.FileListAbsolute.txt
+NextAPI2022/NextAPI/GameTest/x64/Debug/GameTest.pch
+NextAPI2022/NextAPI/GameTest/x64/Debug/GameTest.ilk
+NextAPI2022/NextAPI/GameTest/x64/Debug/GameTest.exe.recipe
+NextAPI2022/NextAPI/GameTest/x64/Debug/GameTest.Build.CppClean.log
+NextAPI2022/NextAPI/.idea/.idea.GameTest/.idea/vcs.xml
+NextAPI2022/NextAPI/.idea/.idea.GameTest/.idea/indexLayout.xml
+NextAPI2022/NextAPI/.idea/.idea.GameTest/.idea/.name
