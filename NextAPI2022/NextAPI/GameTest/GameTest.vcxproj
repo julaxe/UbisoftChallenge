@@ -196,8 +196,10 @@
     <ClInclude Include="Game\Prefabs\Buttons\MainMenuButton.h" />
     <ClInclude Include="Game\Prefabs\Buttons\NavigationButtons.h" />
     <ClInclude Include="Game\Prefabs\Player\Player.h" />
+    <ClInclude Include="Game\Prefabs\SplashImage.h" />
     <ClInclude Include="Game\Scenes\GameScene.h" />
     <ClInclude Include="Game\Scenes\MainMenuScene.h" />
+    <ClInclude Include="Game\Scenes\SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -292,8 +294,10 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="Game\Prefabs\Player\Player.cpp" />
+    <ClCompile Include="Game\Prefabs\SplashImage.cpp" />
     <ClCompile Include="Game\Scenes\GameScene.cpp" />
     <ClCompile Include="Game\Scenes\MainMenuScene.cpp" />
+    <ClCompile Include="Game\Scenes\SplashScreen.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

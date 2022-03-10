@@ -15,10 +15,13 @@ public:
     void Draw() override;
 
     void SetFocus(bool state);
-    bool GetFocus(){return m_isFocused;}
+    bool GetFocus() const {return m_isFocused;}
     virtual void OnClick(){};
 
-private:
+    float GetWidth() const;
+    float GetHeight() const;
+
+protected:
     bool m_isFocused = false;
     Entity* m_spriteInactive;
     Entity* m_spriteActive;

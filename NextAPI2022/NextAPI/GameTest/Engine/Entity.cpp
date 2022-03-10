@@ -66,7 +66,7 @@ void Entity::Draw()
     glTranslatef(x, y, 0.0f);   
     glScalef(scalex, scaley, 0.1f);    
     glRotatef(GetWorldRotation() * 180 / PI, 0.0f, 0.0f, 1.0f);     
-    glColor3f(m_color.x, m_color.y, m_color.z);
+    glColor4f(m_color.x, m_color.y, m_color.z, m_alpha);
     glEnable(GL_BLEND);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);    
     glEnable(GL_TEXTURE_2D);
@@ -120,6 +120,11 @@ void Entity::SetColor(float r, float g, float b)
     m_color.x = r;
     m_color.y = g;
     m_color.z = b;
+}
+
+void Entity::SetAlpha(float alpha)
+{
+    m_alpha = alpha;
 }
 
 void Entity::CreateAnimation(unsigned id, float speed, const std::vector<int>& frames)

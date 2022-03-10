@@ -146,10 +146,10 @@ void Idle()
 			WINDOW_HEIGHT = tileClientArea.bottom - tileClientArea.top;
 		}
 
-		if (App::GetController().CheckButton(APP_ENABLE_DEBUG_INFO_BUTTON) )
-		{
-			gRenderUpdateTimes = !gRenderUpdateTimes;
-		}
+		// if (App::GetController().CheckButton(APP_ENABLE_DEBUG_INFO_BUTTON) )
+		// {
+		// 	gRenderUpdateTimes = !gRenderUpdateTimes;
+		// }
 
 		if (App::IsKeyPressed(APP_QUIT_KEY))
 		{		

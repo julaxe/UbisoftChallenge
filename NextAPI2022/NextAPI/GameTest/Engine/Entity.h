@@ -20,6 +20,9 @@ public:
     float GetWidth()  const { return m_width;  }
     float GetHeight() const { return m_height; }
     void SetColor(float r, float g, float b);
+    Vector3 GetColor() const {return m_color;}
+    void SetAlpha(float alpha);
+    float GetAlpha() const {return m_alpha;}
 
     //Animation
     void SetFrame(unsigned int f);
@@ -30,6 +33,7 @@ public:
 protected:
     //Texture
     Vector3 m_color = {1.0f,1.0f,1.0f};
+    float m_alpha = 1.0f;
     float m_width = 0.0F;
     float m_height = 0.0F;
     unsigned int   m_texWidth = 0;

@@ -10,6 +10,7 @@ public:
     void SetColor(float r, float g, float b);
     Vector3 GetColor() const {return m_color;}
     const char* GetText() const {return m_text;}
+    float GetWidth() const;
 
 private:
     const char* m_text;

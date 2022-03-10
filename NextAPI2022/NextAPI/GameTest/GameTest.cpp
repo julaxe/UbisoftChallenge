@@ -11,10 +11,11 @@
 #include "Engine/SceneManager.h"
 #include "Game/Scenes/GameScene.h"
 #include "Game/Scenes/MainMenuScene.h"
+#include "Game/Scenes/SplashScreen.h"
 //------------------------------------------------------------------------
 void Init()
 {
-	SceneManager::AddScene(new MainMenuScene());
+	SceneManager::AddScene(new SplashScreen());
 }
 
 void HandleInput()

@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Button.h"
 
-#include <iostream>
-
 #include "CollisionManager.h"
 #include "Entity.h"
 #include "../App/app.h"
@@ -24,7 +22,6 @@ void Button::HandleInput()
         if(App::GetController().CheckButton(XINPUT_GAMEPAD_A, true))
         {
             OnClick();
-            std::cout << "Button pressed! " << std::endl;
         }
     }
 }
@@ -54,4 +51,14 @@ void Button::Draw()
 void Button::SetFocus(bool state)
 {
     m_isFocused = state;
+}
+
+float Button::GetWidth() const
+{
+    return m_spriteInactive->GetWidth();
+}
+
+float Button::GetHeight() const
+{
+    return m_spriteInactive->GetHeight();
 }

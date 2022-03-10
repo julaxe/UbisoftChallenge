@@ -25,3 +25,14 @@ void Text::SetColor(float r, float g, float b)
     m_color.y = g;
     m_color.z = b;
 }
+
+float Text::GetWidth() const
+{
+    float width = 0.0f;
+    std::string str = m_text;
+    for(char & c : str)
+    {
+        width += 8.0f; // hard coded value.
+    }
+    return width;
+}
