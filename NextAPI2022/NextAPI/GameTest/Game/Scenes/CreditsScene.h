@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Engine/Entity.h"
 #include "../../Engine/Scene.h"
-#include "../Prefabs/Buttons/MainMenuButton.h"
+#include "../Prefabs/UI/Buttons/MainMenuButton.h"
 
 class CreditsScene : public Scene
 {

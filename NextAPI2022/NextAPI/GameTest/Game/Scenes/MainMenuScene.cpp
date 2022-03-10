@@ -2,11 +2,11 @@
 #include "MainMenuScene.h"
 #include "../../Engine/Entity.h"
 #include "../../Engine/Button.h"
-#include "../Prefabs/Buttons/GameSceneButton.h"
-#include "../Prefabs/Buttons/NavigationButtons.h"
-#include "../Prefabs/Buttons/CreditsButton.h"
-#include "../Prefabs/Buttons/InstructionsButton.h"
-#include "../Prefabs/Buttons/ExitButton.h"
+#include "../Prefabs/UI/Buttons/GameSceneButton.h"
+#include "../Prefabs/UI/Buttons/NavigationButtons.h"
+#include "../Prefabs/UI/Buttons/CreditsButton.h"
+#include "../Prefabs/UI/Buttons/InstructionsButton.h"
+#include "../Prefabs/UI/Buttons/ExitButton.h"
 
 MainMenuScene::MainMenuScene()
 {

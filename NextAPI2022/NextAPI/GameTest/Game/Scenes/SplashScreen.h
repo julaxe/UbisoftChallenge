@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Engine/Scene.h"
-#include "../Prefabs/SplashImage.h"
+#include "../Prefabs/UI/SplashImage.h"
 
 class SplashScreen : public Scene
 {

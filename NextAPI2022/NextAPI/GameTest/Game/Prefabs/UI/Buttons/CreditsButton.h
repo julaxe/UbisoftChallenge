@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../Engine/Button.h"
-#include "../../../Engine/Text.h"
+#include "../../../../Engine/Button.h"
+#include "../../../../Engine/Text.h"
 
 class CreditsButton : public Button
 {

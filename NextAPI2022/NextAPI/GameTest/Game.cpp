@@ -27,7 +27,8 @@ void Update(float deltaTime)
 	HandleInput();
 	for(const auto scene : SceneManager::GetScenes())
 	{
-		scene->Update(deltaTime);
+		if(scene)
+			scene->Update(deltaTime);
 	}
 	
 }
@@ -37,13 +38,15 @@ void Render()
 {	
 	for(const auto scene :SceneManager::GetScenes())
 	{
-		scene->Draw();
+		if(scene)
+			scene->Draw();
 	}
 }
 void Shutdown()
 {
 	for(const auto scene :SceneManager::GetScenes())
 	{
-		scene->Exit();
+		if(scene)
+			scene->Exit();
 	}
 }

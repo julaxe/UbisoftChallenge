@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "CreditsButton.h"
 
-#include "../../../Engine/SceneManager.h"
-#include "../../Scenes/CreditsScene.h"
+#include "../../../../Engine/SceneManager.h"
+#include "../../../Scenes/CreditsScene.h"
 
 CreditsButton::CreditsButton(std::string name, const char* text, const char* fileNameActive,
                              const char* fileNameInactive) : Button(name, fileNameActive, fileNameInactive)

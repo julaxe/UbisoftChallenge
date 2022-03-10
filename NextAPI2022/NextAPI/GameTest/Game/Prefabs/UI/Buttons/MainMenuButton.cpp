@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "MainMenuButton.h"
 
-#include "../../../Engine/SceneManager.h"
-#include "../../Scenes/MainMenuScene.h"
+#include "../../../../Engine/SceneManager.h"
+#include "../../../Scenes/MainMenuScene.h"
 
 MainMenuButton::MainMenuButton(std::string name,const char* text,  const char* fileNameActive, const char* fileNameInactive) : Button(name, fileNameActive, fileNameInactive)
 {

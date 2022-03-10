@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "InstructionsButton.h"
 
-#include "../../../Engine/SceneManager.h"
-#include "../../Scenes/InstructionsScene.h"
+#include "../../../../Engine/SceneManager.h"
+#include "../../../Scenes/InstructionsScene.h"
 
 InstructionsButton::InstructionsButton(std::string name, const char* text, const char* fileNameActive,
                                        const char* fileNameInactive) : Button(name, fileNameActive, fileNameInactive)

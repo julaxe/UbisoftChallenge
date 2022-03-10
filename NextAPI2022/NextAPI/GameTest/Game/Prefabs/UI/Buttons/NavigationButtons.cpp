@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "NavigationButtons.h"
 
-#include "../../../App/app.h"
+#include "../../../../App/app.h"
 
 NavigationButtons::NavigationButtons()
 {

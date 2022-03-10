@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../Engine/Button.h"
-#include "../../../Engine/SceneNode.h"
+#include "../../../../Engine/Button.h"
+#include "../../../../Engine/SceneNode.h"
 
 class NavigationButtons : public SceneNode
 {

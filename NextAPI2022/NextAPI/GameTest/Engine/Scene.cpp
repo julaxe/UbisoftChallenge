@@ -11,6 +11,7 @@ void Scene::Start()
 
 void Scene::Update(float dt)
 {
+    if(m_paused) return;
     for(const auto node : listOfRootNodes)
     {
         node->Update(dt);
@@ -31,6 +32,11 @@ void Scene::Exit()
     {
         node->Exit();
     }
+}
+
+void Scene::SetPause(bool state)
+{
+    m_paused = state;
 }
 
 void Scene::AddRootNode(SceneNode* node)

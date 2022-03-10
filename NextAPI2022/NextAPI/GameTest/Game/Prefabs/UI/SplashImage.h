@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Engine/Entity.h"
-#include "../../Engine/SceneNode.h"
+#include "../../../Engine/Entity.h"
+#include "../../../Engine/SceneNode.h"
 
 enum Transition
 {

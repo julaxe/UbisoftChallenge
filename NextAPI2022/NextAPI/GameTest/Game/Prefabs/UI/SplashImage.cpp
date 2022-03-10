@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "SplashImage.h"
 
-#include "../../Engine/SceneManager.h"
-#include "../Scenes/MainMenuScene.h"
+#include "../../../Engine/SceneManager.h"
+#include "../../Scenes/MainMenuScene.h"
 
 SplashImage::SplashImage()
 {
