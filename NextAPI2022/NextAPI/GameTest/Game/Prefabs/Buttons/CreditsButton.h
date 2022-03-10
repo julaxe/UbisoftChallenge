@@ -2,10 +2,10 @@
 #include "../../../Engine/Button.h"
 #include "../../../Engine/Text.h"
 
-class MainMenuButton : public Button
+class CreditsButton : public Button
 {
 public:
-    MainMenuButton(std::string name, const char* text, const char* fileNameActive, const char* fileNameInactive);
+    CreditsButton(std::string name, const char* text, const char* fileNameActive, const char* fileNameInactive);
     void OnClick() override;
 private:
     Text* m_text;

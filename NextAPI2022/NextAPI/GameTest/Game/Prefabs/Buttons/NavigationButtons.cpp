@@ -13,11 +13,11 @@ void NavigationButtons::HandleInput()
     {
         if(App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_UP, true))
         {
-            NavigateToNextButton();
+            NavigateToPreviousButton();
         }
         else if(App::GetController().CheckButton(XINPUT_GAMEPAD_DPAD_DOWN, true))
         {
-            NavigateToPreviousButton();
+            NavigateToNextButton();
         }
     }
     else

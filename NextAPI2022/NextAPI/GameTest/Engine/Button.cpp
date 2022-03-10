@@ -11,6 +11,7 @@ Button::Button(std::string name, const char* fileNameActive, const char* fileNam
     m_spriteActive = new Entity(fileNameActive);
     m_spriteInactive = new Entity(fileNameInactive);
 
+    SetScale(0.5f,0.5f);
     AddChild(m_spriteActive);
     AddChild(m_spriteInactive);
 }
