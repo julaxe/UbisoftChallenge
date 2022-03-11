@@ -6,6 +6,20 @@ SceneNode::SceneNode(std::string name)
     m_name = name;
 }
 
+void SceneNode::Update(float dt)
+{
+    GameObject::Update(dt);
+    if(!IsActive()) return;
+    UpdateChildren(dt);
+}
+
+void SceneNode::Draw()
+{
+    GameObject::Draw();
+    if(!IsActive()) return;
+    DrawChildren();
+}
+
 void SceneNode::SetActive(bool state)
 {
     m_enable = state;

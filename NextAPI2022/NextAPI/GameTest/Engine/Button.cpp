@@ -29,6 +29,7 @@ void Button::HandleInput()
 
 void Button::Update(float dt)
 {
+    SceneNode::Update(dt);
     if(m_isFocused)
     {
         m_spriteActive->SetActive(true);
@@ -39,14 +40,13 @@ void Button::Update(float dt)
         m_spriteActive->SetActive(false);
         m_spriteInactive->SetActive(true);
     }
-    UpdateChildren(dt);
     HandleInput();
     
 }
 
 void Button::Draw()
 {
-    DrawChildren();
+    SceneNode::Draw();
 }
 
 void Button::Exit()

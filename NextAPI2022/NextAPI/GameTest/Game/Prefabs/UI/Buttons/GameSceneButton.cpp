@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameSceneButton.h"
 
+#include "../../../../Engine/CollisionManager.h"
 #include "../../../../Engine/SceneManager.h"
 #include "../../../../Engine/Text.h"
 #include "../../../Scenes/GameScene.h"
@@ -25,5 +26,6 @@ void GameSceneButton::Exit()
 
 void GameSceneButton::OnClick()
 {
+    CollisionManager::ClearCollisionList();
     SceneManager::ChangeScene(new GameScene());
 }

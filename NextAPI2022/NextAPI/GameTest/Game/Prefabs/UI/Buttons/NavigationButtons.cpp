@@ -40,12 +40,12 @@ void NavigationButtons::HandleInput()
 void NavigationButtons::Update(float dt)
 {
     HandleInput();
-    UpdateChildren(dt);
+    SceneNode::Update(dt);
 }
 
 void NavigationButtons::Draw()
 {
-    DrawChildren();
+    SceneNode::Draw();
 }
 
 void NavigationButtons::AddButton(Button* button)

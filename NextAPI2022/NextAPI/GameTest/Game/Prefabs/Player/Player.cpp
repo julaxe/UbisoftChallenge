@@ -27,6 +27,7 @@ Player::Player()
     m_triangle->SetPosition(40.f, 40.f);
 
     m_collider = new BoxCollider(20.f,20.f);
+    m_collider->SetTag(CollisionTag::PLAYER);
     m_sprite->AddChild(m_collider);
 }
 
@@ -69,14 +70,14 @@ void Player::HandleInput()
 
 void Player::Update(float dt)
 {
+    SceneNode::Update(dt);
     HandleInput();
-    UpdateChildren(dt);
     m_collider->CheckCollisionWithAnotherTag(CollisionTag::BULLET);
 }
 
 void Player::Draw()
 {
-    DrawChildren();
+    SceneNode::Draw();
 }
 
 void Player::Exit()

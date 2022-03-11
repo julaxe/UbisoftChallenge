@@ -28,7 +28,7 @@ Entity::Entity(std::string name, const char* fileName, unsigned nColumns, unsign
 
 void Entity::Update(float dt)
 {
-    if(!IsActive()) return;
+    SceneNode::Update(dt);
     
     if (m_currentAnim >= 0)
     {
@@ -42,7 +42,6 @@ void Entity::Update(float dt)
         int frame = (int)( m_animTime / anim.m_speed );
         SetFrame(anim.m_frames[frame]);        
     }
-    UpdateChildren(dt);
 }
 
 void Entity::Draw()

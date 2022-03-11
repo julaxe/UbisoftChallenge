@@ -13,13 +13,13 @@ SplashImage::SplashImage()
 
 void SplashImage::Update(float dt)
 {
+    SceneNode::Update(dt);
     ManageTransitions(dt);
-    UpdateChildren(dt);
 }
 
 void SplashImage::Draw()
 {
-    DrawChildren();
+    SceneNode::Draw();
 }
 
 void SplashImage::Exit()

@@ -14,11 +14,12 @@ BoxCollider::BoxCollider(float width, float height)
 
 void BoxCollider::Update(float dt)
 {
-    
+    SceneNode::Update(dt);
 }
 
 void BoxCollider::Draw()
 {
+    SceneNode::Draw();
     if(DEBUG_ON)
     {
         if(m_isColliding)

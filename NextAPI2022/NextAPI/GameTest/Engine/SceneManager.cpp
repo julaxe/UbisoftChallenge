@@ -35,6 +35,5 @@ void SceneManager::ChangeScene(Scene* newScene)
             m_scenes.pop_back();
         }
     }
-    CollisionManager::ClearCollisionList();
     AddScene(newScene);
 }

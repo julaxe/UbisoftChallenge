@@ -11,6 +11,7 @@ Text::Text(std::string name, const char* text)
 
 void Text::Draw()
 {
+    SceneNode::Draw();
     App::Print(GetWorldPosition().x, GetWorldPosition().y, m_text, m_color.x, m_color.y, m_color.z);
 }
 
