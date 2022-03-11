@@ -26,6 +26,7 @@ public:
     float GetHeight() const {return m_height;}
 
     bool CheckCollisionWithAnotherTag(CollisionTag tag);
+    bool OutsideGameWorld() const;
 
 private:
     

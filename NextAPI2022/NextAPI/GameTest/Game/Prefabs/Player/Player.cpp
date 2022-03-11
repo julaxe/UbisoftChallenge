@@ -21,11 +21,11 @@ Player::Player()
     m_sprite->CreateAnimation(ANIM_BACKWARD, speed, {24,25,26,27,28,29,30,31});
     AddChild(m_sprite);
 
-    m_triangle = new Entity("triangle", ".\\TestData\\Triangle.bmp");
-    m_triangle->SetScale(0.2f, 0.2f);
-    m_sprite->AddChild(m_triangle);
-    m_triangle->SetPosition(40.f, 40.f);
-
+    
+    m_weapon = new PlayerWeapon();
+    m_weapon->SetPosition(40.f, 40.f);
+    m_sprite->AddChild(m_weapon);
+    
     m_collider = new BoxCollider(20.f,20.f);
     m_collider->SetTag(CollisionTag::PLAYER);
     m_sprite->AddChild(m_collider);

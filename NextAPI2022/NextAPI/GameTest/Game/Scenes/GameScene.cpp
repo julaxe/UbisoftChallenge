@@ -17,6 +17,7 @@ GameScene::GameScene()
     m_bulletTest = new Bullet(".\\TestData\\Triangle.bmp");
     m_bulletTest->SetScale(0.3f, 0.3f);
     m_background->AddChild(m_bulletTest);
+    m_bulletTest->SetPosition(-200.0f,0.0f);
     
     m_player = new Player();
     m_background->AddChild(m_player);

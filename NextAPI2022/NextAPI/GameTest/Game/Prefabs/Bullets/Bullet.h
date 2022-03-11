@@ -21,6 +21,6 @@ private:
     Entity* m_bullet_sprite;
     BoxCollider* m_collider;
 
-    float m_speed = 100.0f;
+    float m_speed = 500.0f;
     Vector2 m_direction = {1.0f, 0.0f};
 };

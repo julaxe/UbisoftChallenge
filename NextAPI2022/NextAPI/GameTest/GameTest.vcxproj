@@ -194,6 +194,7 @@
     <ClInclude Include="Engine\SceneNode.h" />
     <ClInclude Include="Engine\Text.h" />
     <ClInclude Include="Game\Prefabs\Bullets\Bullet.h" />
+    <ClInclude Include="Game\Prefabs\Bullets\BulletPool.h" />
     <ClInclude Include="Game\Prefabs\Player\Player.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\CreditsButton.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\ExitButton.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Game\Prefabs\UI\PauseManager.h" />
     <ClInclude Include="Game\Prefabs\UI\ResumeManager.h" />
     <ClInclude Include="Game\Prefabs\UI\SplashImage.h" />
+    <ClInclude Include="Game\Prefabs\Weapons\PlayerWeapon.h" />
     <ClInclude Include="Game\Scenes\CreditsScene.h" />
     <ClInclude Include="Game\Scenes\GameScene.h" />
     <ClInclude Include="Game\Scenes\InstructionsScene.h" />
@@ -232,6 +234,7 @@
     <ClCompile Include="Engine\Text.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\Prefabs\Bullets\Bullet.cpp" />
+    <ClCompile Include="Game\Prefabs\Bullets\BulletPool.cpp" />
     <ClCompile Include="Game\Prefabs\Player\Player.cpp" />
     <ClCompile Include="Game\Prefabs\UI\Buttons\CreditsButton.cpp" />
     <ClCompile Include="Game\Prefabs\UI\Buttons\ExitButton.cpp" />
@@ -456,6 +459,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Game\Prefabs\Weapons\PlayerWeapon.cpp" />
     <ClCompile Include="Game\Scenes\CreditsScene.cpp" />
     <ClCompile Include="Game\Scenes\GameScene.cpp" />
     <ClCompile Include="Game\Scenes\InstructionsScene.cpp" />

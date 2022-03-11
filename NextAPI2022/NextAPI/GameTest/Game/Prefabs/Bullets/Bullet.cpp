@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Bullet.h"
 
+#include <iostream>
+
 Bullet::Bullet(const char* fileName)
 {
     m_bullet_sprite = new Entity(fileName);
@@ -14,14 +16,18 @@ Bullet::Bullet(const char* fileName)
 void Bullet::Update(float dt)
 {
     SceneNode::Update(dt);
+    if(!IsActive()) return;
+    
     const float newX = GetPosition().x + m_speed * (dt * 0.0001f) * m_direction.x;
     const float newY = GetPosition().y + m_speed * (dt * 0.0001f) * m_direction.y;
 
     SetPosition(newX, newY);
 
-    if(m_collider->CheckCollisionWithAnotherTag(CollisionTag::PLAYER))
+    if(m_collider->CheckCollisionWithAnotherTag(CollisionTag::PLAYER) ||
+        m_collider->OutsideGameWorld())
     {
         SetActive(false);
+        std::cout << "Bullet set to false" << std::endl;
     }
 }
 

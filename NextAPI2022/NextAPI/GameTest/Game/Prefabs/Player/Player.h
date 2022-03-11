@@ -2,6 +2,7 @@
 #include "../../../Engine/BoxCollider.h"
 #include "../../../Engine/Entity.h"
 #include "../../../Engine/SceneNode.h"
+#include "../Weapons/PlayerWeapon.h"
 
 class Player : public SceneNode
 {
@@ -16,4 +17,6 @@ private:
     Entity* m_sprite;
     Entity* m_triangle;
     BoxCollider* m_collider;
+
+    PlayerWeapon* m_weapon;
 };

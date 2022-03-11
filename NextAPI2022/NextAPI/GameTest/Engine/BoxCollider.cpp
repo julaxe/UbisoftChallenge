@@ -55,6 +55,7 @@ bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
     for(const auto boxCollider : listOfBoxCollidersInScene)
     {
         if(boxCollider == this) continue;
+        if(!boxCollider->IsActive()) continue;
         if(boxCollider->GetTag() == tag)
         {
             const Vector2 pos1 = {GetWorldPosition().x, GetWorldPosition().y};
@@ -70,4 +71,20 @@ bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
     }
     m_isColliding = false;
     return m_isColliding;
+}
+
+bool BoxCollider::OutsideGameWorld() const
+{
+    const float posX = GetWorldPosition().x;
+    const float posY = GetWorldPosition().y;
+
+    constexpr float scale = 1.2f;
+    if(posX > APP_VIRTUAL_WIDTH*scale ||
+        posX < -APP_VIRTUAL_WIDTH*scale ||
+        posY > APP_VIRTUAL_HEIGHT*scale ||
+        posY < -APP_VIRTUAL_HEIGHT*scale)
+    {
+        return true;
+    }
+    return false;
 }
