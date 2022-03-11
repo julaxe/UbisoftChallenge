@@ -12,3 +12,8 @@ CreditsScene::CreditsScene()
     m_back_button->SetFocus(true);
     
 }
+
+void CreditsScene::Exit()
+{
+    Scene::Exit();
+}

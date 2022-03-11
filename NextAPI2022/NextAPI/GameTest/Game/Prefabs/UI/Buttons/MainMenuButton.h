@@ -6,6 +6,8 @@ class MainMenuButton : public Button
 {
 public:
     MainMenuButton(std::string name, const char* text, const char* fileNameActive, const char* fileNameInactive);
+    void Exit() override;
+    
     void OnClick() override;
 private:
     Text* m_text;

@@ -39,6 +39,7 @@ public:
     void DeleteChild(SceneNode* child);
     void UpdateChildren(float dt);
     void DrawChildren();
+    void ExitChildren();
 
 protected:
     //scene

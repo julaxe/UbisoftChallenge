@@ -88,8 +88,13 @@ void Entity::Draw()
 
     if(DEBUG_ON)
     {
-        DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width * GetWorldScale().x, m_height * GetWorldScale().y);
+       // DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width * GetWorldScale().x, m_height * GetWorldScale().y);
     }
+}
+
+void Entity::Exit()
+{
+    ExitChildren();
 }
 
 void Entity::SetFrame(unsigned f)

@@ -15,6 +15,14 @@ GameSceneButton::GameSceneButton(std::string name, const char* text, const char*
     m_text->SetPosition(-newPosX, -4.0f);
 }
 
+void GameSceneButton::Exit()
+{
+    Button::Exit();
+
+    delete m_text;
+    m_text = nullptr;
+}
+
 void GameSceneButton::OnClick()
 {
     SceneManager::ChangeScene(new GameScene());

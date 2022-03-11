@@ -9,9 +9,12 @@ class GameScene : public Scene
 {
 public:
     GameScene();
+    void Exit() override;
 private:
     Entity* m_background;
-    MainMenuButton* m_main_menu_button_;
     Player* m_player;
+    BoxCollider* m_testCollider;
+    
+
     PauseManager* m_pause_manager;
 };

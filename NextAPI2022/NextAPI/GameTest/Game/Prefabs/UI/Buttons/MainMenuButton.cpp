@@ -12,6 +12,14 @@ MainMenuButton::MainMenuButton(std::string name,const char* text,  const char* f
     m_text->SetPosition(-newPosX, -4.0f);
 }
 
+void MainMenuButton::Exit()
+{
+    Button::Exit();
+
+    delete m_text;
+    m_text = nullptr;
+}
+
 void MainMenuButton::OnClick()
 {
     SceneManager::ChangeScene(new MainMenuScene());

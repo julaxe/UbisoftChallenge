@@ -13,6 +13,7 @@ class MainMenuScene :public Scene
 {
 public:
     MainMenuScene();
+    void Exit() override;
 private:
     Entity* m_background;
     GameSceneButton* m_play_game_button;

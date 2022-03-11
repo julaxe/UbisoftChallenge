@@ -16,6 +16,7 @@ public:
 
     void Update(float dt) override;
     void Draw() override;
+    void Exit() override;
 
 private:
 

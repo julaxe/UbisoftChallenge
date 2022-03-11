@@ -6,6 +6,7 @@ class InstructionsScene : public Scene
 {
 public:
     InstructionsScene();
+    void Exit() override;
 
 private:
     Entity* m_instructionsImage;

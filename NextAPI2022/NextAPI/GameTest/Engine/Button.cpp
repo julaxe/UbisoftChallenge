@@ -29,7 +29,6 @@ void Button::HandleInput()
 
 void Button::Update(float dt)
 {
-    HandleInput();
     if(m_isFocused)
     {
         m_spriteActive->SetActive(true);
@@ -41,12 +40,26 @@ void Button::Update(float dt)
         m_spriteInactive->SetActive(true);
     }
     UpdateChildren(dt);
+    HandleInput();
     
 }
 
 void Button::Draw()
 {
     DrawChildren();
+}
+
+void Button::Exit()
+{
+    //Exit children first
+    ExitChildren();
+
+    //then
+    delete m_spriteActive;
+    m_spriteActive = nullptr;
+
+    delete m_spriteInactive;
+    m_spriteInactive = nullptr;
 }
 
 void Button::SetFocus(bool state)

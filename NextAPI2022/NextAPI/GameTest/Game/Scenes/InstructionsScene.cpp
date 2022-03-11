@@ -11,3 +11,8 @@ InstructionsScene::InstructionsScene()
     m_back_button->SetPosition(-300.0f,-300.0f);
     m_back_button->SetFocus(true);
 }
+
+void InstructionsScene::Exit()
+{
+    Scene::Exit();
+}

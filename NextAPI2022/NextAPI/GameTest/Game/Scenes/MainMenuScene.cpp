@@ -28,3 +28,8 @@ MainMenuScene::MainMenuScene()
     m_vertical_navigation_buttons->SetVerticalLayout(10.f);
     
 }
+
+void MainMenuScene::Exit()
+{
+    Scene::Exit();
+}

@@ -7,6 +7,8 @@ class SplashScreen : public Scene
 public:
     SplashScreen();
 
+    void Exit() override;
+
 private:
     SplashImage* m_ubisoftLogo;
 };

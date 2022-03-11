@@ -14,6 +14,14 @@ InstructionsButton::InstructionsButton(std::string name, const char* text, const
     m_text->SetPosition(-newPosX, -4.0f);
 }
 
+void InstructionsButton::Exit()
+{
+    Button::Exit();
+
+    delete m_text;
+    m_text = nullptr;
+}
+
 void InstructionsButton::OnClick()
 {
     SceneManager::ChangeScene(new InstructionsScene());

@@ -11,6 +11,7 @@ class PauseScene : public Scene
 {
 public:
     PauseScene();
+    void Exit() override;
 
 private:
     Entity* m_blurryBackground;

@@ -10,6 +10,14 @@ ExitButton::ExitButton(std::string name, const char* text, const char* fileNameA
     m_text->SetPosition(-newPosX, -4.0f);
 }
 
+void ExitButton::Exit()
+{
+    Button::Exit();
+
+    delete m_text;
+    m_text = nullptr;
+}
+
 void ExitButton::OnClick()
 {
     exit(0);

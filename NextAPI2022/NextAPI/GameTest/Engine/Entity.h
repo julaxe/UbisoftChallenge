@@ -15,6 +15,7 @@ public:
     //GameObject
     void Update(float dt) override;
     void Draw() override;
+    void Exit() override;
 
     //Texture
     float GetWidth()  const { return m_width;  }

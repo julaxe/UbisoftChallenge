@@ -14,6 +14,14 @@ CreditsButton::CreditsButton(std::string name, const char* text, const char* fil
     m_text->SetPosition(-newPosX, -4.0f);
 }
 
+void CreditsButton::Exit()
+{
+    Button::Exit();
+
+    delete m_text;
+    m_text = nullptr;
+}
+
 void CreditsButton::OnClick()
 {
     SceneManager::ChangeScene(new CreditsScene());

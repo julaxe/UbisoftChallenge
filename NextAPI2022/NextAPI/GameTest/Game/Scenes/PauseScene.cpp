@@ -26,3 +26,8 @@ PauseScene::PauseScene()
     //position each button vertically with a defined offset.
     m_navigation_buttons->SetVerticalLayout(10.0f);
 }
+
+void PauseScene::Exit()
+{
+    Scene::Exit();
+}

@@ -13,6 +13,7 @@ public:
     void HandleInput();
     void Update(float dt) override;
     void Draw() override;
+    void Exit() override;
 
     void SetFocus(bool state);
     bool GetFocus() const {return m_isFocused;}

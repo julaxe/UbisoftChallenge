@@ -183,6 +183,7 @@
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="App\TextureLoader.h" />
+    <ClInclude Include="Engine\BoxCollider.h" />
     <ClInclude Include="Engine\Button.h" />
     <ClInclude Include="Engine\CollisionManager.h" />
     <ClInclude Include="Engine\DebugManager.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="App\SimpleSound.cpp" />
     <ClCompile Include="App\SimpleSprite.cpp" />
     <ClCompile Include="App\TextureLoader.cpp" />
+    <ClCompile Include="Engine\BoxCollider.cpp" />
     <ClCompile Include="Engine\Button.cpp" />
     <ClCompile Include="Engine\CollisionManager.cpp" />
     <ClCompile Include="Engine\DebugManager.cpp" />

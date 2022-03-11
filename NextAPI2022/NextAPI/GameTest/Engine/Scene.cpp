@@ -32,6 +32,7 @@ void Scene::Exit()
     {
         node->Exit();
     }
+    listOfRootNodes.clear();
 }
 
 void Scene::SetPause(bool state)

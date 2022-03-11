@@ -13,6 +13,14 @@ ResumeButton::ResumeButton(std::string name, const char* text, const char* fileN
     m_text->SetPosition(-newPosX, -4.0f);
 }
 
+void ResumeButton::Exit()
+{
+    Button::Exit();
+
+    delete m_text;
+    m_text = nullptr;
+}
+
 void ResumeButton::OnClick()
 {
     SceneManager::PopScene();

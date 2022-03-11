@@ -22,6 +22,14 @@ void SplashImage::Draw()
     DrawChildren();
 }
 
+void SplashImage::Exit()
+{
+    ExitChildren();
+
+    delete m_splash_image;
+    m_splash_image = nullptr;
+}
+
 void SplashImage::ManageTransitions(float deltaTime)
 {
     switch (m_current_transition)

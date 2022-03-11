@@ -75,7 +75,7 @@ void NavigationButtons::NavigateToPreviousButton()
     m_current_focused_button -= 1;
     if(m_current_focused_button < 0)
     {
-        m_current_focused_button = m_buttonList.size() - 1;
+        m_current_focused_button = static_cast<int>(m_buttonList.size()) - 1;
     }
     m_buttonList[m_current_focused_button]->SetFocus(true);
 }

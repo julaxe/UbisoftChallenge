@@ -7,6 +7,7 @@ class CreditsScene : public Scene
 {
 public:
     CreditsScene();
+    void Exit() override;
 
 private:
     Entity* m_creditsImage;

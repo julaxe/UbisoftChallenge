@@ -111,6 +111,15 @@ void SceneNode::DrawChildren()
     }
 }
 
+void SceneNode::ExitChildren()
+{
+    for(const auto child : m_children)
+    {
+        child->Exit();
+    }
+    m_children.clear();
+}
+
 void SceneNode::SetParent(SceneNode* parent)
 {
     m_parent = parent;
