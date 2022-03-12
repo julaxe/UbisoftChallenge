@@ -5,6 +5,9 @@
 
 PlayerWeapon::PlayerWeapon()
 {
+    m_weapon_sprite = new Entity(".\\TestData\\Triangle.bmp");
+    m_weapon_sprite->SetScale(0.2f, 0.2f);
+    AddChild(m_weapon_sprite);
 }
 
 void PlayerWeapon::SetBulletPool(BulletPool* bullet_pool)

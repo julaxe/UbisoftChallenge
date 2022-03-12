@@ -20,11 +20,10 @@ Player::Player()
     m_sprite->CreateAnimation(ANIM_RIGHT, speed, {16,17,18,19,20,21,22,23});
     m_sprite->CreateAnimation(ANIM_BACKWARD, speed, {24,25,26,27,28,29,30,31});
     AddChild(m_sprite);
-
     
     m_weapon = new PlayerWeapon();
-    m_weapon->SetPosition(40.f, 40.f);
     m_sprite->AddChild(m_weapon);
+    m_weapon->SetPosition(40.f, 40.f);
     
     m_collider = new BoxCollider(20.f,20.f);
     m_collider->SetTag(CollisionTag::PLAYER);
@@ -65,6 +64,16 @@ void Player::HandleInput()
     if(App::GetController().GetRightThumbStickX() < -0.5f)
     {
         m_sprite->SetAngle(m_sprite->GetAngle() - speed * 0.1f);
+    }
+
+    //scale
+    if(App::GetController().GetRightThumbStickY() > 0.5f)
+    {
+        m_sprite->SetScale(m_sprite->GetScale().x + speed * 0.1f, m_sprite->GetScale().y + speed * 0.1f);
+    }
+    if(App::GetController().GetRightThumbStickY() < -0.5f)
+    {
+        m_sprite->SetScale(m_sprite->GetScale().x - speed * 0.1f, m_sprite->GetScale().y - speed * 0.1f);
     }
 }
 

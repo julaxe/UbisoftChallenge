@@ -60,8 +60,8 @@ Vector2 SceneNode::GetWorldPosition() const
         const float parentAngle = m_parent->GetAngle();
         const float newX = m_position.x * cosf(parentAngle) - m_position.y * sinf(parentAngle);
         const float newY = m_position.x * sinf(parentAngle) + m_position.y * cosf(parentAngle);
-        worldPos.x = m_parent->GetWorldPosition().x + newX;
-        worldPos.y = m_parent->GetWorldPosition().y + newY;
+        worldPos.x = m_parent->GetWorldPosition().x + newX*m_parent->GetScale().x;
+        worldPos.y = m_parent->GetWorldPosition().y + newY*m_parent->GetScale().y;
     }
     return worldPos;
 }

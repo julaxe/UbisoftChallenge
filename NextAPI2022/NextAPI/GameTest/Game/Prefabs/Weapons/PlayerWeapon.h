@@ -16,5 +16,6 @@ public:
 
 private:
     void Shoot();
+    Entity* m_weapon_sprite;
     BulletPool* m_bulletPool = nullptr;
 };

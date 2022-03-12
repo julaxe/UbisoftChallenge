@@ -22,10 +22,10 @@ public:
     CollisionTag GetTag() const {return m_tag;}
 
     void SetWidth(float width);
-    float GetWidth() const {return m_width;}
+    float GetWidth() const;
 
     void SetHeight(float height);
-    float GetHeight() const {return m_height;}
+    float GetHeight() const;
 
     void SetCollidingExternal(bool state);
     bool IsBeingHitByAnExternalSource() const {return m_external_collision;} //when someone else collide with you

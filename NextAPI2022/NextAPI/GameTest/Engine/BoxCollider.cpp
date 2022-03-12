@@ -24,15 +24,15 @@ void BoxCollider::Draw()
     {
         if(m_isColliding)
         {
-            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width,m_height,1.0f, 0.2f, 0.2f); //red
+            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, GetWidth(),GetHeight(),1.0f, 0.2f, 0.2f); //red
         }
         else if (m_external_collision)
         {
-            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width,m_height,0.2f, 0.2f, 1.0f); //blue
+            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, GetWidth(),GetHeight(),0.2f, 0.2f, 1.0f); //blue
         }
         else
         {
-            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width,m_height,0.2f, 1.0f, 0.2f); //green
+            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, GetWidth(),GetHeight(),0.2f, 1.0f, 0.2f); //green
         }
     }
 }
@@ -45,6 +45,16 @@ void BoxCollider::SetTag(CollisionTag tag)
 void BoxCollider::SetWidth(float width)
 {
     m_width = width;
+}
+
+float BoxCollider::GetWidth() const
+{
+    return m_width*m_parent->GetScale().x;
+}
+
+float BoxCollider::GetHeight() const
+{
+    return m_height*m_parent->GetScale().y;
 }
 
 void BoxCollider::SetHeight(float height)
@@ -67,9 +77,9 @@ bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
         if(!boxCollider->IsActive()) continue;
         if(boxCollider->GetTag() == tag)
         {
-            const Vector2 pos1 = {GetWorldPosition().x, GetWorldPosition().y};
-            const Vector2 box1 = {m_width, m_height};
-            const Vector2 pos2 = {boxCollider->GetWorldPosition().x, boxCollider->GetWorldPosition().y};
+            const Vector2 pos1 = {GetWorldPosition().x - GetWidth()*0.5f, GetWorldPosition().y - GetHeight()*0.5f};
+            const Vector2 box1 = {GetWidth(), GetHeight()};
+            const Vector2 pos2 = {boxCollider->GetWorldPosition().x - boxCollider->GetWidth()*0.5f, boxCollider->GetWorldPosition().y - boxCollider->GetHeight() *0.5f};
             const Vector2 box2 = {boxCollider->GetWidth(), boxCollider->GetHeight()};
             if(CollisionManager::AABBCollision(pos1, box1, pos2, box2))
             {
