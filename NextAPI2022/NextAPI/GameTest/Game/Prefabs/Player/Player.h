@@ -13,10 +13,11 @@ public:
     void Draw() override;
     void Exit() override;
 
+    void SetBulletPool(BulletPool* bullet_pool) const;
+
 private:
     Entity* m_sprite;
     Entity* m_triangle;
     BoxCollider* m_collider;
-
     PlayerWeapon* m_weapon;
 };

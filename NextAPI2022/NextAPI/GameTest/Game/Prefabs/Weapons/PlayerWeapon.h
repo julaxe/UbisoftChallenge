@@ -8,6 +8,7 @@ class PlayerWeapon : public SceneNode
 public:
     PlayerWeapon();
 
+    void SetBulletPool(BulletPool* bullet_pool);
     void HandleInput();
     void Update(float dt) override;
     void Draw() override;
@@ -15,5 +16,5 @@ public:
 
 private:
     void Shoot();
-    BulletPool* m_bulletPool;
+    BulletPool* m_bulletPool = nullptr;
 };

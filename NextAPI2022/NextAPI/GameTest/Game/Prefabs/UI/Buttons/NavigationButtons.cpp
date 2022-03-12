@@ -31,10 +31,6 @@ void NavigationButtons::HandleInput()
             NavigateToPreviousButton();
         }
     }
-    if(App::GetController().CheckButton(XINPUT_GAMEPAD_A, true))
-    {
-        m_buttonList[m_current_focused_button]->OnClick();
-    }
 }
 
 void NavigationButtons::Update(float dt)

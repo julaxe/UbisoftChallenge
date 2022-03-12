@@ -16,7 +16,7 @@ private:
     Player* m_player;
     BoxCollider* m_testCollider;
     Bullet* m_bulletTest;
-    
+    BulletPool* m_player_bullet_pool;
 
     PauseManager* m_pause_manager;
 };

@@ -5,12 +5,25 @@
 
 Bullet::Bullet(const char* fileName)
 {
+    m_fileName_sprite = fileName;
     m_bullet_sprite = new Entity(fileName);
     AddChild(m_bullet_sprite);
 
     m_collider = new BoxCollider(10.0f, 10.0f);
-    m_collider->SetTag(CollisionTag::BULLET);
     AddChild(m_collider);
+}
+
+Bullet::Bullet(Bullet* bullet)
+{
+    m_fileName_sprite = bullet->m_fileName_sprite;
+    m_bullet_sprite = new Entity(m_fileName_sprite);
+    AddChild(m_bullet_sprite);
+
+    m_collider = new BoxCollider(bullet->m_collider->GetWidth(), bullet->m_collider->GetHeight());
+    AddChild(m_collider);
+
+    SetScale(bullet->GetScale().x, bullet->GetScale().y);
+    SetSpeed(bullet->GetSpeed());
 }
 
 void Bullet::Update(float dt)
@@ -23,11 +36,18 @@ void Bullet::Update(float dt)
 
     SetPosition(newX, newY);
 
-    if(m_collider->CheckCollisionWithAnotherTag(CollisionTag::PLAYER) ||
-        m_collider->OutsideGameWorld())
+    if(m_collider->OutsideGameWorld())
     {
         SetActive(false);
-        std::cout << "Bullet set to false" << std::endl;
+        return;
+    }
+    for(auto tag : m_collisionTags)
+    {
+        if(m_collider->CheckCollisionWithAnotherTag(tag))
+        {
+            SetActive(false);
+            return;
+        }
     }
 }
 
@@ -45,6 +65,8 @@ void Bullet::Exit()
 
     delete m_collider;
     m_collider = nullptr;
+
+    m_collisionTags.clear();
 }
 
 void Bullet::SetDirection(Vector2 direction)
@@ -55,4 +77,9 @@ void Bullet::SetDirection(Vector2 direction)
 void Bullet::SetSpeed(float speed)
 {
     m_speed = speed;
+}
+
+void Bullet::AddCollisionTag(CollisionTag tag)
+{
+    m_collisionTags.push_back(tag);
 }

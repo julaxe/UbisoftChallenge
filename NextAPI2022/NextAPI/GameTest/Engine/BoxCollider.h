@@ -6,7 +6,9 @@ enum class CollisionTag
     DEFAULT,
     PLAYER,
     GROUND,
-    BULLET
+    ENEMY,
+    PLAYERBULLET,
+    ENEMYBULLET
 };
 class BoxCollider : public SceneNode
 {
@@ -25,12 +27,16 @@ public:
     void SetHeight(float height);
     float GetHeight() const {return m_height;}
 
+    void SetCollidingExternal(bool state);
+    bool IsBeingHitByAnExternalSource() const {return m_external_collision;} //when someone else collide with you
+
     bool CheckCollisionWithAnotherTag(CollisionTag tag);
     bool OutsideGameWorld() const;
 
 private:
     
     CollisionTag m_tag = CollisionTag::DEFAULT;
+    bool m_external_collision;
     bool m_isColliding;
     float m_width;
     float m_height;

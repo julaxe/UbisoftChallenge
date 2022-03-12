@@ -66,6 +66,17 @@ Vector2 SceneNode::GetWorldPosition() const
     return worldPos;
 }
 
+void SceneNode::SetWorldPosition(Vector2 worldPos)
+{
+    Vector2 newPosition = worldPos;
+    if(m_parent)
+    {
+        newPosition.x -= m_parent->GetWorldPosition().x;
+        newPosition.y -= m_parent->GetWorldPosition().y;
+    }
+    SetPosition(newPosition.x, newPosition.y);
+}
+
 float SceneNode::GetWorldRotation() const
 {
     float worldRotation = m_angle;
@@ -107,6 +118,16 @@ void SceneNode::DeleteChild(SceneNode* child)
     }
     (*it)->Exit();
     m_children.erase(it);
+}
+
+void SceneNode::ChangeParent(SceneNode* newParent)
+{
+    if(m_parent)
+    {
+        m_parent->DeleteChild(this);
+    }
+    SetParent(newParent);
+    newParent->AddChild(this);
 }
 
 void SceneNode::UpdateChildren(float dt)

@@ -26,6 +26,10 @@ void BoxCollider::Draw()
         {
             DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width,m_height,1.0f, 0.2f, 0.2f); //red
         }
+        else if (m_external_collision)
+        {
+            DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width,m_height,0.2f, 0.2f, 1.0f); //blue
+        }
         else
         {
             DebugManager::DrawCollisionBox(GetWorldPosition().x, GetWorldPosition().y, m_width,m_height,0.2f, 1.0f, 0.2f); //green
@@ -48,6 +52,11 @@ void BoxCollider::SetHeight(float height)
     m_height = height;
 }
 
+void BoxCollider::SetCollidingExternal(bool state)
+{
+    m_external_collision = state;
+}
+
 bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
 {
     //go trough all the collisionBoxes in the scene and check if AABB with tag is true
@@ -64,6 +73,7 @@ bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
             const Vector2 box2 = {boxCollider->GetWidth(), boxCollider->GetHeight()};
             if(CollisionManager::AABBCollision(pos1, box1, pos2, box2))
             {
+                boxCollider->SetCollidingExternal(true);
                 m_isColliding = true;
                 return m_isColliding;
             }

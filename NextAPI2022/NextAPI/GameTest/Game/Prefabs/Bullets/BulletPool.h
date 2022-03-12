@@ -7,6 +7,8 @@ class BulletPool : public SceneNode
 public:
     BulletPool(Bullet* bullet);
 
+    void Draw() override;
+    void Update(float dt) override;
     void Exit() override;
     Bullet* GetAvailableBullet();
 private:

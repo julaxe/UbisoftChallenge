@@ -31,12 +31,15 @@ public:
     
     //local->world
     Vector2 GetWorldPosition() const;
+    void SetWorldPosition(Vector2 worldPos);
     float GetWorldRotation() const;
     Vector2 GetWorldScale() const;
-
+    
     //relations
     void AddChild(SceneNode* child);
     void DeleteChild(SceneNode* child);
+    void ChangeParent(SceneNode* newParent);
+    SceneNode* GetParent() const {return m_parent;}
     void UpdateChildren(float dt);
     void DrawChildren();
     void ExitChildren();

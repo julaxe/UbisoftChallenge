@@ -72,7 +72,7 @@ void Player::Update(float dt)
 {
     SceneNode::Update(dt);
     HandleInput();
-    m_collider->CheckCollisionWithAnotherTag(CollisionTag::BULLET);
+    m_collider->CheckCollisionWithAnotherTag(CollisionTag::ENEMYBULLET);
 }
 
 void Player::Draw()
@@ -92,4 +92,9 @@ void Player::Exit()
 
     delete m_triangle;
     m_triangle = nullptr;
+}
+
+void Player::SetBulletPool(BulletPool* bullet_pool) const
+{
+    m_weapon->SetBulletPool(bullet_pool);
 }

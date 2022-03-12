@@ -5,11 +5,11 @@
 
 PlayerWeapon::PlayerWeapon()
 {
-    Bullet* bullet = new Bullet(".\\TestData\\Triangle.bmp");
-    bullet->SetScale(0.3f, 0.3f);
-    
-    m_bulletPool = new BulletPool(bullet);
-    AddChild(m_bulletPool);
+}
+
+void PlayerWeapon::SetBulletPool(BulletPool* bullet_pool)
+{
+    m_bulletPool = bullet_pool;
 }
 
 void PlayerWeapon::HandleInput()
@@ -41,6 +41,8 @@ void PlayerWeapon::Exit()
 
 void PlayerWeapon::Shoot()
 {
-    m_bulletPool->GetAvailableBullet();
+    Bullet* bullet = m_bulletPool->GetAvailableBullet();
+    //set position and direction here.
+    bullet->SetWorldPosition({GetWorldPosition().x, GetWorldPosition().y});
     //set direction here.
 }

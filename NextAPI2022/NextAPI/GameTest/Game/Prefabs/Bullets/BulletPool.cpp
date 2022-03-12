@@ -8,6 +8,16 @@ BulletPool::BulletPool(Bullet* bullet)
     InitializePool();
 }
 
+void BulletPool::Draw()
+{
+    SceneNode::Draw();
+}
+
+void BulletPool::Update(float dt)
+{
+    SceneNode::Update(dt);
+}
+
 void BulletPool::Exit()
 {
    // ExitChildren();
@@ -45,7 +55,7 @@ void BulletPool::InitializePool()
 
 void BulletPool::AddABulletToThePool()
 {
-    Bullet* newBullet = new Bullet(*m_bulletRef);
+    Bullet* newBullet = new Bullet(m_bulletRef);
     newBullet->SetActive(false);
     m_bulletPool.push_back(newBullet);
     AddChild(newBullet);
