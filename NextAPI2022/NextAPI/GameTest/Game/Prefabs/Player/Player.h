@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../Engine/BoxCollider.h"
 #include "../../../Engine/Entity.h"
+#include "../../../Engine/RigidBody.h"
 #include "../../../Engine/SceneNode.h"
 #include "../Weapons/PlayerWeapon.h"
 
@@ -18,14 +19,16 @@ public:
     void ShootWeapon(Vector2 direction) const;
 
 private:
+    void UpdatePositionWithRigidBody();
     void MoveForward();
     Entity* m_sprite;
     Entity* m_propulsion_flame;
     BoxCollider* m_collider;
     PlayerWeapon* m_weapon;
+    RigidBody* m_rigidBody;
 
     float m_rot_speed = 0.1f;
-    float m_forward_force = 10.0f;
+    float m_forward_force = 10000.0f;
 };
 
 

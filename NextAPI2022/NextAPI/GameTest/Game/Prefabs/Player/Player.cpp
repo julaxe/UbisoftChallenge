@@ -21,6 +21,10 @@ Player::Player()
     m_propulsion_flame->SetScale(2.0f,2.0f);
     m_propulsion_flame->SetAngle(PI);
     m_propulsion_flame->SetActive(false);
+
+    m_rigidBody = new RigidBody();
+    m_rigidBody->SetGravity({1000.0f,0.0f});
+    m_sprite->AddChild(m_rigidBody);
     
     m_collider = new BoxCollider(20.f,20.f);
     m_collider->SetTag(CollisionTag::PLAYER);
@@ -52,6 +56,7 @@ void Player::HandleInput()
     {
         App::StopSound(".\\TestData\\spaceship_engine.wav");
         m_propulsion_flame->SetActive(false);
+        m_rigidBody->SetExternalForce({0.0f,0.0f});
     }
    
 
@@ -67,6 +72,9 @@ void Player::Update(float dt)
 {
     SceneNode::Update(dt);
     HandleInput();
+    
+    UpdatePositionWithRigidBody();
+    
     m_collider->CheckCollisionWithAnotherTag(CollisionTag::ENEMYBULLET);
 }
 
@@ -101,12 +109,21 @@ void Player::ShootWeapon(Vector2 direction) const
     m_weapon->Shoot(direction);
 }
 
+void Player::UpdatePositionWithRigidBody()
+{
+    //update with RigidBody
+    Vector2 currentPosition = GetPosition();
+    const Vector2 rigidBodyVelocity = m_rigidBody->GetVelocity();
+    currentPosition = {currentPosition.x + rigidBodyVelocity.x, currentPosition.y + rigidBodyVelocity.y};
+    SetPosition(currentPosition.x, currentPosition.y);
+}
+
 void Player::MoveForward()
 {
-    Vector2 newPosition = m_sprite->GetPosition();
+    Vector2 external_force;
     const Vector2 direction = GetDirection();
     const Vector2 normalizedDirection = MathManager::NormalizeVector(direction);
-    newPosition.x += normalizedDirection.x * m_forward_force;
-    newPosition.y += normalizedDirection.y * m_forward_force;
-    m_sprite->SetPosition(newPosition.x, newPosition.y);
+    external_force.x += normalizedDirection.x * m_forward_force;
+    external_force.y += normalizedDirection.y * m_forward_force;
+    m_rigidBody->SetExternalForce(external_force);
 }
