@@ -3,6 +3,7 @@
 #include "../../Engine/Line.h"
 #include "../../Engine/Scene.h"
 #include "../Prefabs/Bullets/Bullet.h"
+#include "../Prefabs/Planets/TutorialPlanet.h"
 #include "../Prefabs/UI/PauseManager.h"
 #include "../Prefabs/UI/Buttons/MainMenuButton.h"
 #include "../Prefabs/Player/Player.h"
@@ -18,7 +19,7 @@ private:
     BoxCollider* m_testCollider;
     Bullet* m_bulletTest;
     BulletPool* m_player_bullet_pool;
-    Line* m_line;
+    TutorialPlanet* m_tutorial_planet;
 
     PauseManager* m_pause_manager;
 };
