@@ -3,20 +3,35 @@
 
 #include <iostream>
 
-Bullet::Bullet(const char* fileName)
+#include "../../../Engine/MathManager.h"
+
+Bullet::Bullet(const char* fileName, int columns, int rows)
 {
     m_fileName_sprite = fileName;
-    m_bullet_sprite = new Entity(fileName);
+    m_bullet_sprite = new Entity(fileName, columns, rows);
     AddChild(m_bullet_sprite);
 
     m_collider = new BoxCollider(10.0f, 10.0f);
     AddChild(m_collider);
+
+    if(columns > 1)
+    {
+        std::vector<int> frames;
+        for(int i = 0; i < columns; i++)
+        {
+            frames.push_back(i);
+        }
+        m_bullet_sprite->CreateAnimation(0,0.1f, frames);
+        m_bullet_sprite->SetAnimation(0);
+    }
 }
 
 Bullet::Bullet(Bullet* bullet)
 {
     m_fileName_sprite = bullet->m_fileName_sprite;
-    m_bullet_sprite = new Entity(m_fileName_sprite);
+    const int columns = bullet->GetSprite()->GetColumns();
+    const int rows = bullet->GetSprite()->GetRows();
+    m_bullet_sprite = new Entity(m_fileName_sprite, columns, rows);
     AddChild(m_bullet_sprite);
 
     m_collider = new BoxCollider(bullet->m_collider->GetWidth(), bullet->m_collider->GetHeight());
@@ -24,6 +39,17 @@ Bullet::Bullet(Bullet* bullet)
 
     SetScale(bullet->GetScale().x, bullet->GetScale().y);
     SetSpeed(bullet->GetSpeed());
+
+    if(columns > 1)
+    {
+        std::vector<int> frames;
+        for(int i = 0; i < columns; i++)
+        {
+            frames.push_back(i);
+        }
+        m_bullet_sprite->CreateAnimation(0,0.1f, frames);
+        m_bullet_sprite->SetAnimation(0);
+    }
 }
 
 void Bullet::Update(float dt)
@@ -71,7 +97,8 @@ void Bullet::Exit()
 
 void Bullet::SetDirection(Vector2 direction)
 {
-    m_direction = direction;
+    const Vector2 normalized = MathManager::NormalizeVector(direction);
+    m_direction = normalized;
 }
 
 void Bullet::SetSpeed(float speed)

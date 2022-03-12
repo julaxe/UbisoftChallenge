@@ -9,13 +9,12 @@ public:
     PlayerWeapon();
 
     void SetBulletPool(BulletPool* bullet_pool);
-    void HandleInput();
     void Update(float dt) override;
     void Draw() override;
     void Exit() override;
+    void Shoot(Vector2 direction);
 
 private:
-    void Shoot();
-    Entity* m_weapon_sprite;
+    //Entity* m_weapon_sprite;
     BulletPool* m_bulletPool = nullptr;
 };

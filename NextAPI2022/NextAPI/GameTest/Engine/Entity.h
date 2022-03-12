@@ -30,6 +30,8 @@ public:
     void SetAnimation(int id);
     unsigned int GetFrame()  const { return m_frame; }
     void CreateAnimation( unsigned int id, float speed, const std::vector<int> &frames);
+    int GetColumns() const {return m_nColumns;}
+    int GetRows() const {return m_nRows;}
 
 protected:
     //Texture

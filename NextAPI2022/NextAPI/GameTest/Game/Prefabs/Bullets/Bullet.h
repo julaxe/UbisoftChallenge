@@ -6,7 +6,7 @@
 class Bullet : public SceneNode
 {
 public:
-    Bullet(const char* fileName);
+    Bullet(const char* fileName, int columns = 1, int rows= 1);
     Bullet(Bullet* bullet);
 
     void Update(float dt) override;
@@ -19,6 +19,7 @@ public:
     void SetSpeed(float speed);
     float GetSpeed() const {return m_speed;}
 
+    Entity* GetSprite() const {return m_bullet_sprite;}
     void AddCollisionTag(CollisionTag tag);
 private:
     const char* m_fileName_sprite;
@@ -26,6 +27,6 @@ private:
     BoxCollider* m_collider;
 
     std::vector<CollisionTag> m_collisionTags;
-    float m_speed = 500.0f;
+    float m_speed = 2000.0f;
     Vector2 m_direction = {1.0f, 0.0f};
 };

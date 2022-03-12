@@ -6,7 +6,7 @@
 
 float MathManager::GetDistanceBetweenPoints(Vector2 point1, Vector2 point2)
 {
-    const Vector2 difference = {point2.x - point1.x, point2.y - point1.x};
+    const Vector2 difference = GetDirectionBetweenVectors(point1, point2);
     return GetMagnitudeOfVector(difference);
 }
 
@@ -22,4 +22,20 @@ Vector2 MathManager::LerpBetweenVectors(Vector2 vector1, Vector2 vector2, float 
     const float lerpedY = vector1.y + (vector2.y - vector1.y) * t;
     
     return {lerpedX, lerpedY};
+}
+
+float MathManager::GetAngleFromVector(Vector2 vector)
+{
+    return atan2f(vector.y, vector.x);
+}
+
+Vector2 MathManager::GetDirectionBetweenVectors(Vector2 from, Vector2 destination)
+{
+    return {destination.x - from.x, destination.y - from.y};
+}
+
+Vector2 MathManager::NormalizeVector(Vector2 vector)
+{
+    float magnitude = GetMagnitudeOfVector(vector);
+    return {vector.x / magnitude, vector.y/magnitude};
 }

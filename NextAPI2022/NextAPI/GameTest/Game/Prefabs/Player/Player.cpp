@@ -1,80 +1,66 @@
 #include "stdafx.h"
 #include "Player.h"
 
-#include "../../../App/app.h"
-
-enum AnimationState
-{
-    ANIM_FORWARD,
-    ANIM_LEFT,
-    ANIM_RIGHT,
-    ANIM_BACKWARD
-};
+#include "../../../app/app.h"
+#include "../../../Engine/MathManager.h"
 
 Player::Player()
 {
-    m_sprite = new Entity("sprite", ".\\TestData\\Test.bmp", 8, 4);
-    float speed = 1.0f/15.0f;
-    m_sprite->CreateAnimation(ANIM_FORWARD, speed, {0,1,2,3,4,5,6,7});
-    m_sprite->CreateAnimation(ANIM_LEFT, speed, {8,9,10,11,12,13,14,15});
-    m_sprite->CreateAnimation(ANIM_RIGHT, speed, {16,17,18,19,20,21,22,23});
-    m_sprite->CreateAnimation(ANIM_BACKWARD, speed, {24,25,26,27,28,29,30,31});
+    m_sprite = new Entity("sprite", ".\\TestData\\Nave.bmp");
     AddChild(m_sprite);
     
     m_weapon = new PlayerWeapon();
     m_sprite->AddChild(m_weapon);
-    m_weapon->SetPosition(40.f, 40.f);
+    m_weapon->SetPosition(0.f, 20.f);
+
+    m_propulsion_flame = new Entity("sprite", ".\\TestData\\PropulsionFlame.bmp", 7, 1);
+    m_propulsion_flame->CreateAnimation(0,0.1f,{0,1,2,3,4,5,6});
+    m_propulsion_flame->SetAnimation(0);
+    m_sprite->AddChild(m_propulsion_flame);
+    m_propulsion_flame->SetPosition(0.0f,-20.0f);
+    m_propulsion_flame->SetScale(2.0f,2.0f);
+    m_propulsion_flame->SetAngle(PI);
+    m_propulsion_flame->SetActive(false);
     
     m_collider = new BoxCollider(20.f,20.f);
     m_collider->SetTag(CollisionTag::PLAYER);
     m_sprite->AddChild(m_collider);
+
+    SetScale(0.3f, 0.3f);
 }
 
 void Player::HandleInput()
 {
-    const float speed = 1.0f;
-    Vector2 newPosition = m_sprite->GetPosition();
     if(App::GetController().GetLeftThumbStickX() > 0.5f)
     {
-        m_sprite->SetAnimation(ANIM_RIGHT);
-        newPosition.x += speed;
+        m_sprite->SetAngle(m_sprite->GetAngle() - m_rot_speed);
     }
     if(App::GetController().GetLeftThumbStickX() < -0.5f)
     {
-        m_sprite->SetAnimation(ANIM_LEFT);
-        newPosition.x -= speed;
+        m_sprite->SetAngle(m_sprite->GetAngle() + m_rot_speed);
     }
-    if(App::GetController().GetLeftThumbStickY() > 0.5f)
+    if(App::GetController().CheckButton(XINPUT_GAMEPAD_A, false))
     {
-        m_sprite->SetAnimation(ANIM_BACKWARD);
-        newPosition.y += speed;
+        MoveForward();
+        m_propulsion_flame->SetActive(true);
+        if(!App::IsSoundPlaying(".\\TestData\\spaceship_engine.wav"))
+        {
+            App::PlaySoundEffect(".\\TestData\\spaceship_engine.wav", true);
+        }
     }
-    if(App::GetController().GetLeftThumbStickY() < -0.5f)
+    else
     {
-        m_sprite->SetAnimation(ANIM_FORWARD);
-        newPosition.y -= speed;
+        App::StopSound(".\\TestData\\spaceship_engine.wav");
+        m_propulsion_flame->SetActive(false);
     }
-    m_sprite->SetPosition(newPosition.x, newPosition.y);
+   
 
-    //angle
-    if(App::GetController().GetRightThumbStickX() > 0.5f)
+    if(App::GetController().CheckButton(XINPUT_GAMEPAD_X, true))
     {
-        m_sprite->SetAngle(m_sprite->GetAngle() + speed * 0.1f);
+        App::PlaySoundEffect(".\\TestData\\laser1.wav");
+        ShootWeapon(GetDirection());
     }
-    if(App::GetController().GetRightThumbStickX() < -0.5f)
-    {
-        m_sprite->SetAngle(m_sprite->GetAngle() - speed * 0.1f);
-    }
-
-    //scale
-    if(App::GetController().GetRightThumbStickY() > 0.5f)
-    {
-        m_sprite->SetScale(m_sprite->GetScale().x + speed * 0.1f, m_sprite->GetScale().y + speed * 0.1f);
-    }
-    if(App::GetController().GetRightThumbStickY() < -0.5f)
-    {
-        m_sprite->SetScale(m_sprite->GetScale().x - speed * 0.1f, m_sprite->GetScale().y - speed * 0.1f);
-    }
+   
 }
 
 void Player::Update(float dt)
@@ -98,12 +84,29 @@ void Player::Exit()
 
     delete m_collider;
     m_collider = nullptr;
+}
 
-    delete m_triangle;
-    m_triangle = nullptr;
+Vector2 Player::GetDirection() const
+{
+    return MathManager::GetDirectionBetweenVectors(m_sprite->GetWorldPosition(), m_weapon->GetWorldPosition());
 }
 
 void Player::SetBulletPool(BulletPool* bullet_pool) const
 {
     m_weapon->SetBulletPool(bullet_pool);
+}
+
+void Player::ShootWeapon(Vector2 direction) const
+{
+    m_weapon->Shoot(direction);
+}
+
+void Player::MoveForward()
+{
+    Vector2 newPosition = m_sprite->GetPosition();
+    const Vector2 direction = GetDirection();
+    const Vector2 normalizedDirection = MathManager::NormalizeVector(direction);
+    newPosition.x += normalizedDirection.x * m_forward_force;
+    newPosition.y += normalizedDirection.y * m_forward_force;
+    m_sprite->SetPosition(newPosition.x, newPosition.y);
 }

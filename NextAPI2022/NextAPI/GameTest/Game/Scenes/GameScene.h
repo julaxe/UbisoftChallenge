@@ -14,10 +14,8 @@ public:
     GameScene();
     void Exit() override;
 private:
-    Entity* m_background;
+    SceneNode* m_background;
     Player* m_player;
-    BoxCollider* m_testCollider;
-    Bullet* m_bulletTest;
     BulletPool* m_player_bullet_pool;
     TutorialPlanet* m_tutorial_planet;
 

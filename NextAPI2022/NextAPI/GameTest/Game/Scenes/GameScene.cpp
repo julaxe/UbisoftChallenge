@@ -3,24 +3,16 @@
 
 GameScene::GameScene()
 {
-    m_background = new Entity("background", ".\\TestData\\Pokemon2.bmp");
-    m_background->SetScale(0.5f, 0.5f);
+    m_background = new SceneNode("background");
+    m_background->SetScale(1.0f, 1.0f);
     AddRootNode(m_background);
-    
-    m_testCollider = new BoxCollider(30.0f, 40.f);
-    m_background->AddChild(m_testCollider);
-    m_testCollider->SetTag(CollisionTag::ENEMYBULLET);
-    m_testCollider->SetPosition(-100.f,100.0f);
 
-    m_bulletTest = new Bullet(".\\TestData\\Triangle.bmp");
-    m_bulletTest->SetScale(0.3f, 0.3f);
-    m_background->AddChild(m_bulletTest);
-    m_bulletTest->SetPosition(-200.0f,0.0f);
-    
-    m_player_bullet_pool = new BulletPool(new Bullet(*m_bulletTest));
+    const Bullet* playerBullet = new Bullet(".\\TestData\\PlayerBullet.bmp",3,1);
+    m_player_bullet_pool = new BulletPool(new Bullet(*playerBullet));
     m_background->AddChild(m_player_bullet_pool);
     
     m_tutorial_planet = new TutorialPlanet();
+    m_tutorial_planet->SetScale(2.0f,2.0f);
     m_background->AddChild(m_tutorial_planet);
     m_player = new Player();
     m_background->AddChild(m_player);
