@@ -4,20 +4,25 @@
 #include "../app/app.h"
 
 std::vector<BoxCollider*> CollisionManager::m_listBoxColliders;
+
+bool CollisionManager::PointInsideRectangle(Vector2 point, Vector2 rectPos, float width, float height)
+{
+    if(point.x >= (rectPos.x - width * 0.5f) &&
+        point.x <= (rectPos.x + width * 0.5f) &&
+        point.y >= (rectPos.y - height * 0.5f) &&
+        point.y <= (rectPos.y + height * 0.5f))
+    {
+        return true;
+    }
+    return false;
+}
+
 bool CollisionManager::isMouseInsideRectangle(float posX, float posY, float width, float height)
 {
     float mouseX, mouseY;
     App::GetMousePos(mouseX, mouseY);
 
-    if(mouseX >= (posX - width * 0.5f) &&
-        mouseX <= (posX + width * 0.5f) &&
-        mouseY >= (posY - height * 0.5f) &&
-        mouseY <= (posY + height * 0.5f))
-    {
-        return true;
-    }
-    return false;
-    
+    return PointInsideRectangle({mouseX, mouseY}, {posX, posY}, width, height);
 }
 
 bool CollisionManager::AABBCollision(Vector2 pos1, Vector2 box1, Vector2 pos2, Vector2 box2)

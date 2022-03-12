@@ -5,6 +5,7 @@
 class CollisionManager
 {
 public:
+    static bool PointInsideRectangle(Vector2 point, Vector2 rectPos, float width, float height);
     static bool isMouseInsideRectangle(float posX, float posY, float width, float height);
     static bool AABBCollision(Vector2 pos1, Vector2 box1, Vector2 pos2, Vector2 box2);
     static void AddBoxColliderToCollisionList(BoxCollider* boxCollider);

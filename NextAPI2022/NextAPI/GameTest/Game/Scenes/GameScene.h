@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Engine/Entity.h"
+#include "../../Engine/Line.h"
 #include "../../Engine/Scene.h"
 #include "../Prefabs/Bullets/Bullet.h"
 #include "../Prefabs/UI/PauseManager.h"
@@ -17,6 +18,7 @@ private:
     BoxCollider* m_testCollider;
     Bullet* m_bulletTest;
     BulletPool* m_player_bullet_pool;
+    Line* m_line;
 
     PauseManager* m_pause_manager;
 };

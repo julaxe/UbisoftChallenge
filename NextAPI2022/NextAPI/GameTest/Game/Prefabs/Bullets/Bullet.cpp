@@ -41,7 +41,7 @@ void Bullet::Update(float dt)
         SetActive(false);
         return;
     }
-    for(auto tag : m_collisionTags)
+    for(const auto tag : m_collisionTags)
     {
         if(m_collider->CheckCollisionWithAnotherTag(tag))
         {

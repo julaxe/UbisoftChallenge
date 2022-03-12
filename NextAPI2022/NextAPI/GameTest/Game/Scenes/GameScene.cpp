@@ -23,6 +23,8 @@ GameScene::GameScene()
     m_player = new Player();
     m_background->AddChild(m_player);
 
+    m_line = new Line({400.0f, 400.0f}, {-400.f, -400.f});
+    m_background->AddChild(m_line);
 
     m_player->SetBulletPool(m_player_bullet_pool);
     m_pause_manager = new PauseManager();
