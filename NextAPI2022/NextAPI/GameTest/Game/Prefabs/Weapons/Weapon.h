@@ -3,16 +3,16 @@
 #include "../Bullets/Bullet.h"
 #include "../Bullets/BulletPool.h"
 
-class PlayerWeapon : public SceneNode
+class Weapon : public SceneNode
 {
 public:
-    PlayerWeapon();
+    Weapon();
 
     void SetBulletPool(BulletPool* bullet_pool);
     void Update(float dt) override;
     void Draw() override;
     void Exit() override;
-    void Shoot(Vector2 direction);
+    void Shoot(Vector2 direction) const;
 
 private:
     //Entity* m_weapon_sprite;

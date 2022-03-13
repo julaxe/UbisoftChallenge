@@ -3,7 +3,9 @@
 #include "../../../Engine/Entity.h"
 #include "../../../Engine/RigidBody.h"
 #include "../../../Engine/SceneNode.h"
-#include "../Weapons/PlayerWeapon.h"
+#include "../Weapons/PlayerScanner.h"
+#include "../Weapons/PlayerShield.h"
+#include "../Weapons/Weapon.h"
 
 class Player : public SceneNode
 {
@@ -17,16 +19,25 @@ public:
     Vector2 GetDirection() const;
     void SetBulletPool(BulletPool* bullet_pool) const;
     void ShootWeapon(Vector2 direction) const;
+    void SetRespawnPoint(Vector2 respawnPoint);
+    void GoToRespawnPoint();
 
 private:
     void UpdatePositionWithRigidBody();
     void MoveForward();
+    void StopEngine();
+    void UseShieldAndScanner();
+    void StopShieldAndScanner();
     Entity* m_sprite;
     Entity* m_propulsion_flame;
     BoxCollider* m_collider;
-    PlayerWeapon* m_weapon;
+    Weapon* m_weapon;
     RigidBody* m_rigidBody;
+    PlayerShield* m_player_shield;
+    PlayerScanner* m_player_scanner;
 
+    Vector2 m_respawn_point = {0.0f, 0.0f};
+    
     float m_rot_speed = 0.1f;
     float m_forward_force = 10000.0f;
 };

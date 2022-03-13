@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 
+#include "../../StaticGameData.h"
 #include "../../../app/app.h"
 #include "../../../Engine/MathManager.h"
 
@@ -9,7 +10,7 @@ Player::Player()
     m_sprite = new Entity("sprite", ".\\TestData\\Nave.bmp");
     AddChild(m_sprite);
     
-    m_weapon = new PlayerWeapon();
+    m_weapon = new Weapon();
     m_sprite->AddChild(m_weapon);
     m_weapon->SetPosition(0.f, 20.f);
 
@@ -23,18 +24,29 @@ Player::Player()
     m_propulsion_flame->SetActive(false);
 
     m_rigidBody = new RigidBody();
-    m_rigidBody->SetGravity({1000.0f,0.0f});
+    //m_rigidBody->SetGravity({1000.0f,0.0f});
     m_sprite->AddChild(m_rigidBody);
+
+    m_player_shield = new PlayerShield();
+    m_sprite->AddChild(m_player_shield);
+    m_player_shield->SetActive(false);
+
+    m_player_scanner = new PlayerScanner();
+    m_sprite->AddChild(m_player_scanner);
+    m_player_scanner->SetActive(false);
     
     m_collider = new BoxCollider(20.f,20.f);
     m_collider->SetTag(CollisionTag::PLAYER);
     m_sprite->AddChild(m_collider);
 
     SetScale(0.3f, 0.3f);
+
+    StaticGameData::PlayerRef = this;
 }
 
 void Player::HandleInput()
 {
+    //rotation
     if(App::GetController().GetLeftThumbStickX() > 0.5f)
     {
         m_sprite->SetAngle(m_sprite->GetAngle() - m_rot_speed);
@@ -43,27 +55,31 @@ void Player::HandleInput()
     {
         m_sprite->SetAngle(m_sprite->GetAngle() + m_rot_speed);
     }
+    
+    //movement
     if(App::GetController().CheckButton(XINPUT_GAMEPAD_A, false))
     {
         MoveForward();
-        m_propulsion_flame->SetActive(true);
-        if(!App::IsSoundPlaying(".\\TestData\\spaceship_engine.wav"))
-        {
-            App::PlaySoundEffect(".\\TestData\\spaceship_engine.wav", true);
-        }
     }
     else
     {
-        App::StopSound(".\\TestData\\spaceship_engine.wav");
-        m_propulsion_flame->SetActive(false);
-        m_rigidBody->SetExternalForce({0.0f,0.0f});
+        StopEngine();
     }
-   
-
+    
+    //fire
     if(App::GetController().CheckButton(XINPUT_GAMEPAD_X, true))
     {
-        App::PlaySoundEffect(".\\TestData\\laser1.wav");
         ShootWeapon(GetDirection());
+    }
+    
+    //shield
+    if(App::GetController().CheckButton(XINPUT_GAMEPAD_Y, false))
+    {
+       UseShieldAndScanner();
+    }
+    else
+    {
+       StopShieldAndScanner();
     }
    
 }
@@ -75,7 +91,15 @@ void Player::Update(float dt)
     
     UpdatePositionWithRigidBody();
     
-    m_collider->CheckCollisionWithAnotherTag(CollisionTag::ENEMYBULLET);
+    if(m_collider->CheckCollisionWithAnotherTag(CollisionTag::ENEMYBULLET))
+    {
+        if(m_player_shield->IsActive())
+        {
+            //make a sound or something
+            return;
+        }
+        StaticGameData::KillPlayer();
+    }
 }
 
 void Player::Draw()
@@ -106,7 +130,20 @@ void Player::SetBulletPool(BulletPool* bullet_pool) const
 
 void Player::ShootWeapon(Vector2 direction) const
 {
+    App::PlaySoundEffect(".\\TestData\\laser1.wav");
     m_weapon->Shoot(direction);
+}
+
+void Player::SetRespawnPoint(Vector2 respawnPoint)
+{
+    m_respawn_point = respawnPoint;
+    SetPosition(respawnPoint.x, respawnPoint.y);
+}
+
+void Player::GoToRespawnPoint()
+{
+    SetPosition(m_respawn_point.x, m_respawn_point.y);
+    m_rigidBody->Restart();
 }
 
 void Player::UpdatePositionWithRigidBody()
@@ -120,10 +157,51 @@ void Player::UpdatePositionWithRigidBody()
 
 void Player::MoveForward()
 {
+    //physics
     Vector2 external_force;
     const Vector2 direction = GetDirection();
     const Vector2 normalizedDirection = MathManager::NormalizeVector(direction);
     external_force.x += normalizedDirection.x * m_forward_force;
     external_force.y += normalizedDirection.y * m_forward_force;
     m_rigidBody->SetExternalForce(external_force);
+
+    //animation
+    m_propulsion_flame->SetActive(true);
+    
+    //sound
+    if(!App::IsSoundPlaying(".\\TestData\\spaceship_engine.wav"))
+    {
+        App::PlaySoundEffect(".\\TestData\\spaceship_engine.wav", true);
+    }
+
+    //game data
+    StaticGameData::UseFuel(1);
+}
+
+void Player::StopEngine()
+{
+    //sound
+    App::StopSound(".\\TestData\\spaceship_engine.wav");
+
+    //animation
+    m_propulsion_flame->SetActive(false);
+
+    //physics
+    m_rigidBody->SetExternalForce({0.0f,0.0f});
+}
+
+void Player::UseShieldAndScanner()
+{
+    //animation
+    m_player_shield->SetActive(true);
+    //m_player_scanner->SetDirection(GetDirection());
+
+    //game data
+    StaticGameData::UseFuel(1);
+}
+
+void Player::StopShieldAndScanner()
+{
+    //animation
+    m_player_shield->SetActive(false);
 }

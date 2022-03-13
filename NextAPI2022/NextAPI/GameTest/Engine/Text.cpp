@@ -3,7 +3,7 @@
 
 #include "../App/app.h"
 
-Text::Text(std::string name, const char* text)
+Text::Text(std::string name, std::string text)
 {
     m_name = name;
     m_text = text;
@@ -12,10 +12,10 @@ Text::Text(std::string name, const char* text)
 void Text::Draw()
 {
     SceneNode::Draw();
-    App::Print(GetWorldPosition().x, GetWorldPosition().y, m_text, m_color.x, m_color.y, m_color.z);
+    App::Print(GetWorldPosition().x, GetWorldPosition().y, m_text.c_str(), m_color.x, m_color.y, m_color.z);
 }
 
-void Text::SetText(const char* text)
+void Text::SetText(std::string text)
 {
     m_text = text;
 }
@@ -33,7 +33,7 @@ float Text::GetWidth() const
     std::string str = m_text;
     for(char & c : str)
     {
-        width += 8.0f; // hard coded value.
+        width += 8.0f * GetWorldScale().x; // hard coded value.
     }
     return width;
 }

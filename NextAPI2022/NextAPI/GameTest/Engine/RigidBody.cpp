@@ -38,3 +38,9 @@ void RigidBody::SetMaxSpeed(float maxSpeed)
 {
     m_maxSpeed = maxSpeed;
 }
+
+void RigidBody::Restart()
+{
+    m_velocity = {0.0f, 0.0f};
+    m_external_force = {0.0f, 0.0f};
+}

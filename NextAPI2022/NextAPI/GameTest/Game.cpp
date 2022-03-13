@@ -15,7 +15,7 @@
 //------------------------------------------------------------------------
 void Init()
 {
-	SceneManager::AddScene(new SplashScreen());
+	SceneManager::AddScene(new GameScene());
 }
 
 void HandleInput()

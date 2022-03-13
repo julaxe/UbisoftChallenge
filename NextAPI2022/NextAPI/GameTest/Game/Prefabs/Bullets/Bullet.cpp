@@ -11,7 +11,7 @@ Bullet::Bullet(const char* fileName, int columns, int rows)
     m_bullet_sprite = new Entity(fileName, columns, rows);
     AddChild(m_bullet_sprite);
 
-    m_collider = new BoxCollider(10.0f, 10.0f);
+    m_collider = new BoxCollider(7.0f, 7.0f);
     AddChild(m_collider);
 
     if(columns > 1)
@@ -39,6 +39,7 @@ Bullet::Bullet(Bullet* bullet)
 
     SetScale(bullet->GetScale().x, bullet->GetScale().y);
     SetSpeed(bullet->GetSpeed());
+    SetTag(bullet->GetTag());
 
     if(columns > 1)
     {
@@ -65,6 +66,12 @@ void Bullet::Update(float dt)
     if(m_collider->OutsideGameWorld())
     {
         SetActive(false);
+        return;
+    }
+    if(m_collider->IsBeingHitByAnExternalSource())
+    {
+        SetActive(false);
+        m_collider->SetCollidingExternal(false);
         return;
     }
     for(const auto tag : m_collisionTags)
@@ -104,6 +111,11 @@ void Bullet::SetDirection(Vector2 direction)
 void Bullet::SetSpeed(float speed)
 {
     m_speed = speed;
+}
+
+void Bullet::SetTag(CollisionTag tag) const
+{
+    m_collider->SetTag(tag);
 }
 
 void Bullet::AddCollisionTag(CollisionTag tag)

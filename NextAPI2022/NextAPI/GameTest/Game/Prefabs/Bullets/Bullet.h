@@ -19,6 +19,8 @@ public:
     void SetSpeed(float speed);
     float GetSpeed() const {return m_speed;}
 
+    CollisionTag GetTag() const {return m_collider->GetTag();}
+    void SetTag(CollisionTag tag) const;
     Entity* GetSprite() const {return m_bullet_sprite;}
     void AddCollisionTag(CollisionTag tag);
 private:

@@ -7,6 +7,7 @@ enum class CollisionTag
     PLAYER,
     GROUND,
     ENEMY,
+    TURRET,
     PLAYERBULLET,
     ENEMYBULLET
 };

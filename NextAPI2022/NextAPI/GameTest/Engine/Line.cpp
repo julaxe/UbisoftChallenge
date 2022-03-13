@@ -4,6 +4,7 @@
 #include "CollisionManager.h"
 #include "MathManager.h"
 #include "../app/app.h"
+#include "../Game/StaticGameData.h"
 
 Line::Line(Vector2 point1, Vector2 point2)
 {
@@ -16,7 +17,10 @@ Line::Line(Vector2 point1, Vector2 point2)
 void Line::Update(float dt)
 {
     SceneNode::Update(dt);
+    if(!m_canCollide) return;
     auto listOfColliders = CollisionManager::GetListBoxCollidersInScene();
+    
+    //this just work for collision with player
     if(!m_playerRefCollider)
     {
         for(auto it = listOfColliders.begin(); it < listOfColliders.end(); it++)
@@ -40,11 +44,12 @@ void Line::Update(float dt)
             const Vector2 boxPos = {m_playerRefCollider->GetWorldPosition().x, m_playerRefCollider->GetWorldPosition().y};
             if(CollisionManager::PointInsideRectangle(newPoint,boxPos, width, height))
             {
-                m_color = {1.0f,0.2f,0.2f};
+                //m_color = {1.0f,0.2f,0.2f};
+                StaticGameData::KillPlayer();
                 return;
             }
         }
-        m_color = {0.0f, 1.0f, 0.0f};
+        m_color = m_defaultColor;
     }
 }
 
@@ -69,4 +74,15 @@ Vector2 Line::GetPointWorldPosition(Vector2 point) const
         worldPos.y = m_parent->GetWorldPosition().y + newY*m_parent->GetScale().y;
     }
     return worldPos;
+}
+
+void Line::SetColor(Vector3 color)
+{
+    m_color = color;
+    m_defaultColor = color;
+}
+
+void Line::SetCanCollide(bool state)
+{
+    m_canCollide = state;
 }

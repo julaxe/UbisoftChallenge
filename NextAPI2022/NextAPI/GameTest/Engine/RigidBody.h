@@ -11,6 +11,7 @@ public:
     void SetGravity(Vector2 gravity);
     void SetExternalForce(Vector2 externalForce);
     void SetMaxSpeed(float maxSpeed);
+    void Restart();
     
 private:
     Vector2 m_velocity = {0.0f, 0.0f};

@@ -198,6 +198,7 @@
     <ClInclude Include="Engine\Text.h" />
     <ClInclude Include="Game\Prefabs\Bullets\Bullet.h" />
     <ClInclude Include="Game\Prefabs\Bullets\BulletPool.h" />
+    <ClInclude Include="Game\Prefabs\Enemies\Turret.h" />
     <ClInclude Include="Game\Prefabs\Planets\Planet.h" />
     <ClInclude Include="Game\Prefabs\Planets\TutorialPlanet.h" />
     <ClInclude Include="Game\Prefabs\Player\Player.h" />
@@ -209,15 +210,19 @@
     <ClInclude Include="Game\Prefabs\UI\Buttons\NavigationButtons.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\ResumeButton.h" />
     <ClInclude Include="Game\Prefabs\UI\PauseManager.h" />
+    <ClInclude Include="Game\Prefabs\UI\PlayerInterface.h" />
     <ClInclude Include="Game\Prefabs\UI\ResumeManager.h" />
     <ClInclude Include="Game\Prefabs\UI\SplashImage.h" />
-    <ClInclude Include="Game\Prefabs\Weapons\PlayerWeapon.h" />
+    <ClInclude Include="Game\Prefabs\Weapons\PlayerScanner.h" />
+    <ClInclude Include="Game\Prefabs\Weapons\PlayerShield.h" />
+    <ClInclude Include="Game\Prefabs\Weapons\Weapon.h" />
     <ClInclude Include="Game\Scenes\CreditsScene.h" />
     <ClInclude Include="Game\Scenes\GameScene.h" />
     <ClInclude Include="Game\Scenes\InstructionsScene.h" />
     <ClInclude Include="Game\Scenes\MainMenuScene.h" />
     <ClInclude Include="Game\Scenes\PauseScene.h" />
     <ClInclude Include="Game\Scenes\SplashScreen.h" />
+    <ClInclude Include="Game\StaticGameData.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -243,6 +248,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\Prefabs\Bullets\Bullet.cpp" />
     <ClCompile Include="Game\Prefabs\Bullets\BulletPool.cpp" />
+    <ClCompile Include="Game\Prefabs\Enemies\Turret.cpp" />
     <ClCompile Include="Game\Prefabs\Planets\Planet.cpp" />
     <ClCompile Include="Game\Prefabs\Planets\TutorialPlanet.cpp" />
     <ClCompile Include="Game\Prefabs\Player\Player.cpp" />
@@ -325,6 +331,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Game\Prefabs\UI\PlayerInterface.cpp" />
     <ClCompile Include="Game\Prefabs\UI\ResumeManager.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -469,7 +476,9 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="Game\Prefabs\Weapons\PlayerWeapon.cpp" />
+    <ClCompile Include="Game\Prefabs\Weapons\PlayerScanner.cpp" />
+    <ClCompile Include="Game\Prefabs\Weapons\PlayerShield.cpp" />
+    <ClCompile Include="Game\Prefabs\Weapons\Weapon.cpp" />
     <ClCompile Include="Game\Scenes\CreditsScene.cpp" />
     <ClCompile Include="Game\Scenes\GameScene.cpp" />
     <ClCompile Include="Game\Scenes\InstructionsScene.cpp" />
@@ -547,6 +556,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="Game\Scenes\SplashScreen.cpp" />
+    <ClCompile Include="Game\StaticGameData.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

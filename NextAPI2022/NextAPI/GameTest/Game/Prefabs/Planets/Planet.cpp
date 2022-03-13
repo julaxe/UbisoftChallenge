@@ -47,6 +47,22 @@ void Planet::BuildPlanet(std::vector<Vector2> points)
     CloseCircle();
 }
 
+void Planet::SetCollision(bool state)
+{
+    for(int i = 0; i < m_lines.size(); i++)
+    {
+        m_lines[i]->SetCanCollide(state);
+    }
+}
+
+void Planet::SetColor(Vector3 color)
+{
+    for(int i = 0; i < m_lines.size(); i++)
+    {
+        m_lines[i]->SetColor(color);
+    }
+}
+
 void Planet::ClearLines()
 {
     for(int i = 0; i < m_lines.size(); i++)
