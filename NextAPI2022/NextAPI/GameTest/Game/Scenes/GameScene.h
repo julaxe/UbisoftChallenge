@@ -9,6 +9,7 @@
 #include "../Prefabs/UI/Buttons/MainMenuButton.h"
 #include "../Prefabs/Player/Player.h"
 #include "../Prefabs/Resources/FuelTank.h"
+#include "../Prefabs/Stages/StageBase.h"
 #include "../Prefabs/UI/PlayerInterface.h"
 
 class GameScene : public Scene
@@ -17,14 +18,8 @@ public:
     GameScene();
     void Exit() override;
 private:
-    SceneNode* m_background;
-    Player* m_player;
-    BulletPool* m_player_bullet_pool;
-    BulletPool* m_turrets_bullet_pool;
-    TutorialPlanet* m_tutorial_planet;
+    StageBase* m_stage;
     PlayerInterface* m_player_interface;
-    Turret* m_turret;
-    FuelTank* m_fuelTank;
 
     PauseManager* m_pause_manager;
 };
