@@ -13,7 +13,7 @@ public:
     void Start() override {}
     void Update(float dt) override;
     void Draw() override;
-    void Exit() override {}
+    void Exit() override;
     
     //scene
     void SetActive(bool state);

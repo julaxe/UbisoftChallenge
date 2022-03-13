@@ -5,23 +5,14 @@
 #include "../../Engine/Entity.h"
 #include "../../Engine/Button.h"
 #include "../../Engine/CollisionManager.h"
-#include "../Prefabs/UI/Buttons/GameSceneButton.h"
-#include "../Prefabs/UI/Buttons/NavigationButtons.h"
-#include "../Prefabs/UI/Buttons/CreditsButton.h"
-#include "../Prefabs/UI/Buttons/InstructionsButton.h"
-#include "../Prefabs/UI/Buttons/ExitButton.h"
 
 MainMenuScene::MainMenuScene()
 {
     CollisionManager::ClearCollisionList();
     StaticGameData::ResourcesList.clear();
     
-    m_root = new SceneNode("root");
+    m_root = new ZoomInEffect();
     AddRootNode(m_root);
-
-    const Bullet* playerBullet = new Bullet(".\\TestData\\PlayerBullet.bmp",3,1);
-    m_player_bullet_pool = new BulletPool(new Bullet(*playerBullet));
-    m_root->AddChild(m_player_bullet_pool);
     
     m_play_game_planet = new PlayGamePlanet("Play Game", ".\\TestData\\planet1.bmp");
     m_root->AddChild(m_play_game_planet);
@@ -38,6 +29,10 @@ MainMenuScene::MainMenuScene()
     m_quit_game_planet = new QuitGamePlanet("Quit Game", ".\\TestData\\planet4.bmp");
     m_root->AddChild(m_quit_game_planet);
     m_quit_game_planet->SetPosition(200.0f,-200.0f);
+
+    const Bullet* playerBullet = new Bullet(".\\TestData\\PlayerBullet.bmp",3,1);
+    m_player_bullet_pool = new BulletPool(new Bullet(*playerBullet));
+    m_root->AddChild(m_player_bullet_pool);
 
     m_player = new Player();
     m_player->SetBulletPool(m_player_bullet_pool);
@@ -72,8 +67,5 @@ void MainMenuScene::Exit()
     delete m_pause_manager;
     m_pause_manager = nullptr;
 
-    delete m_player_bullet_pool;
     m_player_bullet_pool = nullptr;
-    
-    
 }

@@ -2,6 +2,7 @@
 #include "../../Engine/Scene.h"
 #include "../Prefabs/Player/Player.h"
 #include "../Prefabs/UI/PauseManager.h"
+#include "../Prefabs/UI/ZoomInEffect.h"
 #include "../Prefabs/UI/PlanetsMenu/CreditsPlanet.h"
 #include "../Prefabs/UI/PlanetsMenu/InstructionsPlanet.h"
 #include "../Prefabs/UI/PlanetsMenu/PlayGamePlanet.h"
@@ -21,7 +22,7 @@ public:
     MainMenuScene();
     void Exit() override;
 private:
-    SceneNode* m_root;
+    ZoomInEffect* m_root;
     BulletPool* m_player_bullet_pool;
     Player* m_player;
     PlayGamePlanet* m_play_game_planet;

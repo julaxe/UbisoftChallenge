@@ -1,7 +1,9 @@
 #pragma once
 #include "../../Engine/Entity.h"
 #include "../../Engine/Scene.h"
-#include "../Prefabs/UI/Buttons/MainMenuButton.h"
+#include "../Prefabs/Player/Player.h"
+#include "../Prefabs/UI/ZoomInEffect.h"
+#include "../Prefabs/UI/PlanetsMenu/MainMenuPlanet.h"
 
 class CreditsScene : public Scene
 {
@@ -10,6 +12,9 @@ public:
     void Exit() override;
 
 private:
+    BulletPool* m_player_bullet_pool;
+    Player* m_player;
+    ZoomInEffect* m_root;
     Entity* m_creditsImage;
-    MainMenuButton* m_back_button;
+    MainMenuPlanet* m_back_planet;
 };

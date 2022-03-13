@@ -20,6 +20,12 @@ void SceneNode::Draw()
     DrawChildren();
 }
 
+void SceneNode::Exit()
+{
+    GameObject::Exit();
+    ExitChildren();
+}
+
 void SceneNode::SetActive(bool state)
 {
     m_enable = state;
