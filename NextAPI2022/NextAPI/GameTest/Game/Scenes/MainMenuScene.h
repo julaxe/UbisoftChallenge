@@ -1,5 +1,11 @@
 #pragma once
 #include "../../Engine/Scene.h"
+#include "../Prefabs/Player/Player.h"
+#include "../Prefabs/UI/PauseManager.h"
+#include "../Prefabs/UI/PlanetsMenu/CreditsPlanet.h"
+#include "../Prefabs/UI/PlanetsMenu/InstructionsPlanet.h"
+#include "../Prefabs/UI/PlanetsMenu/PlayGamePlanet.h"
+#include "../Prefabs/UI/PlanetsMenu/QuitGamePlanet.h"
 
 
 class ExitButton;
@@ -15,10 +21,13 @@ public:
     MainMenuScene();
     void Exit() override;
 private:
-    Entity* m_background;
-    GameSceneButton* m_play_game_button;
-    CreditsButton* m_credits_button;
-    InstructionsButton* m_instructions_button;
-    ExitButton* m_exit_button;
-    NavigationButtons* m_vertical_navigation_buttons;
+    SceneNode* m_root;
+    BulletPool* m_player_bullet_pool;
+    Player* m_player;
+    PlayGamePlanet* m_play_game_planet;
+    InstructionsPlanet* m_instructions_planet;
+    CreditsPlanet* m_credits_planet;
+    QuitGamePlanet* m_quit_game_planet;
+
+    PauseManager* m_pause_manager;
 };

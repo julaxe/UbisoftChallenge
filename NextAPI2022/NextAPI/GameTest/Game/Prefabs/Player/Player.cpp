@@ -116,6 +116,8 @@ void Player::Exit()
 
     delete m_collider;
     m_collider = nullptr;
+
+    App::StopSound(".\\TestData\\spaceship_engine.wav");
 }
 
 Vector2 Player::GetDirection() const

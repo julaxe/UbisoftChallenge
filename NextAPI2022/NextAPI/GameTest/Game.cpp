@@ -15,7 +15,7 @@
 //------------------------------------------------------------------------
 void Init()
 {
-	SceneManager::AddScene(new GameScene());
+	SceneManager::AddScene(new MainMenuScene());
 }
 
 void HandleInput()

@@ -1,8 +1,14 @@
 #include "stdafx.h"
 #include "GameScene.h"
 
+#include "../StaticGameData.h"
+#include "../../Engine/CollisionManager.h"
+
 GameScene::GameScene()
 {
+    CollisionManager::ClearCollisionList();
+    StaticGameData::ResourcesList.clear();
+    
     m_background = new SceneNode("background");
     m_background->SetScale(1.0f, 1.0f);
     AddRootNode(m_background);

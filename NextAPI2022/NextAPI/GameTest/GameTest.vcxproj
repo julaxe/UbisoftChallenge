@@ -211,6 +211,11 @@
     <ClInclude Include="Game\Prefabs\UI\Buttons\NavigationButtons.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\ResumeButton.h" />
     <ClInclude Include="Game\Prefabs\UI\PauseManager.h" />
+    <ClInclude Include="Game\Prefabs\UI\PlanetsMenu\CreditsPlanet.h" />
+    <ClInclude Include="Game\Prefabs\UI\PlanetsMenu\InstructionsPlanet.h" />
+    <ClInclude Include="Game\Prefabs\UI\PlanetsMenu\PlayGamePlanet.h" />
+    <ClInclude Include="Game\Prefabs\UI\PlanetsMenu\QuitGamePlanet.h" />
+    <ClInclude Include="Game\Prefabs\UI\PlanetsMenu\UIMenuPlanet.h" />
     <ClInclude Include="Game\Prefabs\UI\PlayerInterface.h" />
     <ClInclude Include="Game\Prefabs\UI\ResumeManager.h" />
     <ClInclude Include="Game\Prefabs\UI\SplashImage.h" />
@@ -333,6 +338,11 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Game\Prefabs\UI\PlanetsMenu\CreditsPlanet.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\PlanetsMenu\InstructionsPlanet.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\PlanetsMenu\PlayGamePlanet.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\PlanetsMenu\QuitGamePlanet.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\PlanetsMenu\UIMenuPlanet.cpp" />
     <ClCompile Include="Game\Prefabs\UI\PlayerInterface.cpp" />
     <ClCompile Include="Game\Prefabs\UI\ResumeManager.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>

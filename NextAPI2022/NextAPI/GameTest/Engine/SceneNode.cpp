@@ -134,7 +134,8 @@ void SceneNode::UpdateChildren(float dt)
 {
     for(const auto child : m_children)
     {
-        child->Update(dt);
+        if(m_children.size() > 0)
+            child->Update(dt);
     }
 }
 

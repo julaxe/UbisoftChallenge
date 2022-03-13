@@ -27,7 +27,5 @@ void GameSceneButton::Exit()
 
 void GameSceneButton::OnClick()
 {
-    CollisionManager::ClearCollisionList();
-    StaticGameData::ResourcesList.clear();
     SceneManager::ChangeScene(new GameScene());
 }
