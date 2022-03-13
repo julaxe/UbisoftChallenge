@@ -24,10 +24,11 @@ public:
 
 private:
     void UpdatePositionWithRigidBody();
-    void MoveForward();
-    void StopEngine();
-    void UseShieldAndScanner();
-    void StopShieldAndScanner();
+    void MoveForward() const;
+    void StopEngine() const;
+    void UseShieldAndScanner() const;
+    void StopShieldAndScanner() const;
+    void CheckForCloseResource() const;
     Entity* m_sprite;
     Entity* m_propulsion_flame;
     BoxCollider* m_collider;

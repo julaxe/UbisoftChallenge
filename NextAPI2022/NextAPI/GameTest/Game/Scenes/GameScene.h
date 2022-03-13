@@ -8,6 +8,7 @@
 #include "../Prefabs/UI/PauseManager.h"
 #include "../Prefabs/UI/Buttons/MainMenuButton.h"
 #include "../Prefabs/Player/Player.h"
+#include "../Prefabs/Resources/FuelTank.h"
 #include "../Prefabs/UI/PlayerInterface.h"
 
 class GameScene : public Scene
@@ -23,6 +24,7 @@ private:
     TutorialPlanet* m_tutorial_planet;
     PlayerInterface* m_player_interface;
     Turret* m_turret;
+    FuelTank* m_fuelTank;
 
     PauseManager* m_pause_manager;
 };

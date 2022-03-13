@@ -28,6 +28,10 @@ GameScene::GameScene()
     m_turret->SetBulletPool(m_turrets_bullet_pool);
     m_background->AddChild(m_turret);
     m_turret->SetPosition(-180.0f,12.0f);
+
+    m_fuelTank = new FuelTank();
+    m_background->AddChild(m_fuelTank);
+    m_fuelTank->SetPosition(-250.0f,12.0f);
     
     m_player = new Player();
     m_background->AddChild(m_player);

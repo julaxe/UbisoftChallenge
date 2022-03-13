@@ -155,7 +155,7 @@ void Player::UpdatePositionWithRigidBody()
     SetPosition(currentPosition.x, currentPosition.y);
 }
 
-void Player::MoveForward()
+void Player::MoveForward() const
 {
     //physics
     Vector2 external_force;
@@ -178,7 +178,7 @@ void Player::MoveForward()
     StaticGameData::UseFuel(1);
 }
 
-void Player::StopEngine()
+void Player::StopEngine() const
 {
     //sound
     App::StopSound(".\\TestData\\spaceship_engine.wav");
@@ -190,18 +190,55 @@ void Player::StopEngine()
     m_rigidBody->SetExternalForce({0.0f,0.0f});
 }
 
-void Player::UseShieldAndScanner()
+void Player::UseShieldAndScanner() const
 {
     //animation
     m_player_shield->SetActive(true);
-    //m_player_scanner->SetDirection(GetDirection());
+    CheckForCloseResource();
 
     //game data
     StaticGameData::UseFuel(1);
 }
 
-void Player::StopShieldAndScanner()
+void Player::StopShieldAndScanner() const
 {
     //animation
     m_player_shield->SetActive(false);
+    m_player_scanner->SetActive(false);
+}
+
+void Player::CheckForCloseResource() const
+{
+    const auto resources = StaticGameData::ResourcesList;
+    for(const auto resource : resources)
+    {
+        if(!resource->IsActive()) continue;
+        const float distance = MathManager::GetDistanceBetweenPoints(GetWorldPosition(), resource->GetWorldPosition());
+        if(distance <= m_player_scanner->GetScannerDetectionRadius())
+        {
+            //set scanner direction
+            const Vector2 direction = MathManager::GetDirectionBetweenVectors(GetWorldPosition(), resource->GetWorldPosition());
+            m_player_scanner->SetDirection(direction);
+            //show scanner
+            m_player_scanner->SetActive(true);
+            //make sound
+            if(!App::IsSoundPlaying(".\\TestData\\laser13.wav"))
+            {
+                App::PlaySoundEffect(".\\TestData\\laser13.wav");
+            }
+            if(distance<= m_player_scanner->GetGatherRange())
+            {
+                //gather resource
+                resource->SetActive(false);
+                StaticGameData::GetFuelTank(1000);
+                //make sound
+                if(!App::IsSoundPlaying(".\\TestData\\Powerup.wav"))
+                {
+                    App::PlaySoundEffect(".\\TestData\\Powerup.wav");
+                }
+            }
+            return;
+        }
+    }
+    m_player_scanner->SetActive(false);
 }

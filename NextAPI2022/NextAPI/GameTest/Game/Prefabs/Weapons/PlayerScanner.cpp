@@ -20,8 +20,18 @@ PlayerScanner::PlayerScanner()
 
 void PlayerScanner::SetDirection(Vector2 direction)
 {
-    const float angle = MathManager::GetAngleFromVector(direction);
+    const float angle = MathManager::GetAngleFromVector(direction) - PI*0.5f;
     SetAngle(angle);
+}
+
+void PlayerScanner::SetGatherRange(float range)
+{
+    m_gather_range = range;
+}
+
+void PlayerScanner::SetScannerDetectionRadius(float radius)
+{
+    m_scanner_detection = radius;
 }
 
 void PlayerScanner::Exit()

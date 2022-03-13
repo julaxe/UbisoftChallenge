@@ -202,6 +202,7 @@
     <ClInclude Include="Game\Prefabs\Planets\Planet.h" />
     <ClInclude Include="Game\Prefabs\Planets\TutorialPlanet.h" />
     <ClInclude Include="Game\Prefabs\Player\Player.h" />
+    <ClInclude Include="Game\Prefabs\Resources\FuelTank.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\CreditsButton.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\ExitButton.h" />
     <ClInclude Include="Game\Prefabs\UI\Buttons\GameSceneButton.h" />
@@ -252,6 +253,7 @@
     <ClCompile Include="Game\Prefabs\Planets\Planet.cpp" />
     <ClCompile Include="Game\Prefabs\Planets\TutorialPlanet.cpp" />
     <ClCompile Include="Game\Prefabs\Player\Player.cpp" />
+    <ClCompile Include="Game\Prefabs\Resources\FuelTank.cpp" />
     <ClCompile Include="Game\Prefabs\UI\Buttons\CreditsButton.cpp" />
     <ClCompile Include="Game\Prefabs\UI\Buttons\ExitButton.cpp" />
     <ClCompile Include="Game\Prefabs\UI\Buttons\GameSceneButton.cpp" />

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameSceneButton.h"
 
+#include "../../../StaticGameData.h"
 #include "../../../../Engine/CollisionManager.h"
 #include "../../../../Engine/SceneManager.h"
 #include "../../../../Engine/Text.h"
@@ -27,5 +28,6 @@ void GameSceneButton::Exit()
 void GameSceneButton::OnClick()
 {
     CollisionManager::ClearCollisionList();
+    StaticGameData::ResourcesList.clear();
     SceneManager::ChangeScene(new GameScene());
 }
