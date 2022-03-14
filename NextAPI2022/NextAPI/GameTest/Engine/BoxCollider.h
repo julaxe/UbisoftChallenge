@@ -32,7 +32,7 @@ public:
     bool IsBeingHitByAnExternalSource() const {return m_external_collision;} //when someone else collide with you
 
     bool CheckCollisionWithAnotherTag(CollisionTag tag);
-    bool OutsideGameWorld() const;
+    bool OutsideGameWorld(float scale) const;
 
 private:
     

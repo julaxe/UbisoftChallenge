@@ -11,26 +11,19 @@ Line::Line(Vector2 point1, Vector2 point2)
     m_point1 = point1;
     m_point2 = point2;
 
-    m_WakeUpRadius = MathManager::GetDistanceBetweenPoints(point1, point2) * 0.7f;
+    CalculateMiddlePoint();
+    m_WakeUpRadius = MathManager::GetDistanceBetweenPoints(point1, point2) * 0.8f;
 }
 
 void Line::Update(float dt)
 {
-    SceneNode::Update(dt);
+    if(!IsActive()) return;
+    if(!IsEnabled()) return;
     if(!m_canCollide) return;
-    auto listOfColliders = CollisionManager::GetListBoxCollidersInScene();
+    const float distanceToPlayer = MathManager::GetDistanceBetweenPoints(GetPointWorldPosition(m_middlePoint), StaticGameData::PlayerRef->GetWorldPosition());
+    if(distanceToPlayer > m_WakeUpRadius) return;
     
-    //this just work for collision with player
-    if(!m_playerRefCollider)
-    {
-        for(auto it = listOfColliders.begin(); it < listOfColliders.end(); it++)
-        {
-            if((*it)->GetTag() == CollisionTag::PLAYER)
-            {
-                m_playerRefCollider = (*it);
-            }
-        }
-    }
+    m_playerRefCollider = StaticGameData::PlayerRef->GetCollider();
     if(m_playerRefCollider)
     {
         float lerpPosition = m_collisionPrecision;
@@ -55,6 +48,8 @@ void Line::Update(float dt)
 
 void Line::Draw()
 {
+    if(!IsEnabled()) return;
+    if(!IsActive()) return;
     SceneNode::Draw();
     const Vector2 worldPosPoint1 = GetPointWorldPosition(m_point1);
     const Vector2 worldPosPoint2 = GetPointWorldPosition(m_point2);
@@ -70,8 +65,8 @@ Vector2 Line::GetPointWorldPosition(Vector2 point) const
         const float parentAngle = m_parent->GetAngle();
         const float newX = point.x * cosf(parentAngle) - point.y * sinf(parentAngle);
         const float newY = point.x * sinf(parentAngle) + point.y * cosf(parentAngle);
-        worldPos.x = m_parent->GetWorldPosition().x + newX*m_parent->GetScale().x;
-        worldPos.y = m_parent->GetWorldPosition().y + newY*m_parent->GetScale().y;
+        worldPos.x = m_parent->GetWorldPosition().x + newX*m_parent->GetWorldScale().x;
+        worldPos.y = m_parent->GetWorldPosition().y + newY*m_parent->GetWorldScale().y;
     }
     return worldPos;
 }
@@ -85,4 +80,11 @@ void Line::SetColor(Vector3 color)
 void Line::SetCanCollide(bool state)
 {
     m_canCollide = state;
+}
+
+void Line::CalculateMiddlePoint()
+{
+    Vector2 difference = MathManager::GetDirectionBetweenVectors(m_point1, m_point2);
+    Vector2 halfway = {difference.x * 0.5f, difference.y * 0.5f};
+    m_middlePoint = {m_point1.x + halfway.x, m_point1.y + halfway.y};
 }

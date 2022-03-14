@@ -12,16 +12,16 @@ Player::Player()
     
     m_weapon = new Weapon();
     m_sprite->AddChild(m_weapon);
-    m_weapon->SetPosition(0.f, 20.f);
+    m_weapon->SetPosition(0.f, 80.f);
 
     m_propulsion_flame = new Entity("sprite", ".\\TestData\\PropulsionFlame.bmp", 7, 1);
     m_propulsion_flame->CreateAnimation(0,0.1f,{0,1,2,3,4,5,6});
     m_propulsion_flame->SetAnimation(0);
     m_sprite->AddChild(m_propulsion_flame);
-    m_propulsion_flame->SetPosition(0.0f,-20.0f);
+    m_propulsion_flame->SetPosition(0.0f,-80.0f);
     m_propulsion_flame->SetScale(2.0f,2.0f);
     m_propulsion_flame->SetAngle(PI);
-    m_propulsion_flame->SetActive(false);
+    m_propulsion_flame->SetEnable(false);
 
     m_rigidBody = new RigidBody();
     //m_rigidBody->SetGravity({1000.0f,0.0f});
@@ -29,13 +29,13 @@ Player::Player()
 
     m_player_shield = new PlayerShield();
     m_sprite->AddChild(m_player_shield);
-    m_player_shield->SetActive(false);
+    m_player_shield->SetEnable(false);
 
     m_player_scanner = new PlayerScanner();
     m_sprite->AddChild(m_player_scanner);
-    m_player_scanner->SetActive(false);
+    m_player_scanner->SetEnable(false);
     
-    m_collider = new BoxCollider(20.f,20.f);
+    m_collider = new BoxCollider(70.f,70.f);
     m_collider->SetTag(CollisionTag::PLAYER);
     m_sprite->AddChild(m_collider);
 
@@ -90,12 +90,13 @@ void Player::Update(float dt)
     HandleInput();
     
     UpdatePositionWithRigidBody();
+
     
     if(m_collider->CheckCollisionWithAnotherTag(CollisionTag::ENEMYBULLET))
     {
-        if(m_player_shield->IsActive())
+        if(m_player_shield->IsEnabled())
         {
-            //make a sound or something
+            App::PlaySoundEffect(".\\TestData\\Test.wav");
             return;
         }
         StaticGameData::KillPlayer();
@@ -148,13 +149,23 @@ void Player::GoToRespawnPoint()
     m_rigidBody->Restart();
 }
 
+void Player::SetGravity(Vector2 newGravity) const
+{
+    m_rigidBody->SetGravity(newGravity);
+}
+
 void Player::UpdatePositionWithRigidBody()
 {
     //update with RigidBody
-    Vector2 currentPosition = GetPosition();
+    const Vector2 currentPosition = GetPosition();
     const Vector2 rigidBodyVelocity = m_rigidBody->GetVelocity();
-    currentPosition = {currentPosition.x + rigidBodyVelocity.x, currentPosition.y + rigidBodyVelocity.y};
-    SetPosition(currentPosition.x, currentPosition.y);
+    const Vector2 newPosition = {currentPosition.x + rigidBodyVelocity.x, currentPosition.y + rigidBodyVelocity.y};
+    SetPosition(newPosition.x, newPosition.y);
+    if(m_collider->OutsideGameWorld(1.0f))
+    {
+        SetPosition(currentPosition.x, currentPosition.y);
+    }
+    
 }
 
 void Player::MoveForward() const
@@ -168,7 +179,7 @@ void Player::MoveForward() const
     m_rigidBody->SetExternalForce(external_force);
 
     //animation
-    m_propulsion_flame->SetActive(true);
+    m_propulsion_flame->SetEnable(true);
     
     //sound
     if(!App::IsSoundPlaying(".\\TestData\\spaceship_engine.wav"))
@@ -186,7 +197,7 @@ void Player::StopEngine() const
     App::StopSound(".\\TestData\\spaceship_engine.wav");
 
     //animation
-    m_propulsion_flame->SetActive(false);
+    m_propulsion_flame->SetEnable(false);
 
     //physics
     m_rigidBody->SetExternalForce({0.0f,0.0f});
@@ -195,7 +206,7 @@ void Player::StopEngine() const
 void Player::UseShieldAndScanner() const
 {
     //animation
-    m_player_shield->SetActive(true);
+    m_player_shield->SetEnable(true);
     CheckForCloseResource();
 
     //game data
@@ -205,8 +216,8 @@ void Player::UseShieldAndScanner() const
 void Player::StopShieldAndScanner() const
 {
     //animation
-    m_player_shield->SetActive(false);
-    m_player_scanner->SetActive(false);
+    m_player_shield->SetEnable(false);
+    m_player_scanner->SetEnable(false);
 }
 
 void Player::CheckForCloseResource() const
@@ -214,6 +225,7 @@ void Player::CheckForCloseResource() const
     const auto resources = StaticGameData::ResourcesList;
     for(const auto resource : resources)
     {
+        if(!resource->IsEnabled()) continue;
         if(!resource->IsActive()) continue;
         const float distance = MathManager::GetDistanceBetweenPoints(GetWorldPosition(), resource->GetWorldPosition());
         if(distance <= m_player_scanner->GetScannerDetectionRadius())
@@ -222,7 +234,7 @@ void Player::CheckForCloseResource() const
             const Vector2 direction = MathManager::GetDirectionBetweenVectors(GetWorldPosition(), resource->GetWorldPosition());
             m_player_scanner->SetDirection(direction);
             //show scanner
-            m_player_scanner->SetActive(true);
+            m_player_scanner->SetEnable(true);
             //make sound
             if(!App::IsSoundPlaying(".\\TestData\\laser13.wav"))
             {
@@ -231,8 +243,17 @@ void Player::CheckForCloseResource() const
             if(distance<= m_player_scanner->GetGatherRange())
             {
                 //gather resource
-                resource->SetActive(false);
-                StaticGameData::GetFuelTank(1000);
+                if(resource->GetTag() == ResourceTag::FUELTANK)
+                {
+                    StaticGameData::GetFuelTank(500);
+                }
+                if(resource->GetTag() == ResourceTag::CORE)
+                {
+                    StaticGameData::GetFuelTank(2000);
+                    StaticGameData::PlayerScore += 1000;
+                }
+                
+                resource->SetEnable(false);
                 //make sound
                 if(!App::IsSoundPlaying(".\\TestData\\Powerup.wav"))
                 {
@@ -242,5 +263,5 @@ void Player::CheckForCloseResource() const
             return;
         }
     }
-    m_player_scanner->SetActive(false);
+    m_player_scanner->SetEnable(false);
 }

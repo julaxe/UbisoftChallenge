@@ -24,3 +24,10 @@ void ZoomInEffect::Update(float dt)
     if(m_children_pause) return;
     SceneNode::Update(dt);
 }
+
+void ZoomInEffect::Restart()
+{
+    m_children_pause = true;
+    m_timer = 0.0f;
+    m_current_scale = m_start_scale;
+}

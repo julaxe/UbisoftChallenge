@@ -24,7 +24,7 @@ private:
     Weapon* m_weapon;
     BoxCollider* m_collisionBox;
     float m_health = 100.0f;
-    float m_detection_radius = 500.0f;
+    float m_detection_radius = 200.0f;
     float m_fire_rate = 1.0f;
     float m_timer = 0.0f;
     

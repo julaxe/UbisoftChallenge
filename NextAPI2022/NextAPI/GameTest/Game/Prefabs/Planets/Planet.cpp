@@ -44,7 +44,8 @@ void Planet::BuildPlanet(std::vector<Vector2> points)
     {
         AddNewPoint(point);
     }
-    CloseCircle();
+    if(m_closing_circle)
+        CloseCircle();
 }
 
 void Planet::SetCollision(bool state)
@@ -61,6 +62,11 @@ void Planet::SetColor(Vector3 color)
     {
         m_lines[i]->SetColor(color);
     }
+}
+
+void Planet::SetClosingCircle(bool state)
+{
+    m_closing_circle = state;
 }
 
 void Planet::ClearLines()

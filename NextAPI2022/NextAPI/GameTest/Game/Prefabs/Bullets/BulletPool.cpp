@@ -33,7 +33,7 @@ Bullet* BulletPool::GetAvailableBullet()
     //check if I have bullets available in my pool
     for(int i = 0; i < m_bulletPool.size(); i++)
     {
-        if(!m_bulletPool[i]->IsActive())
+        if(!m_bulletPool[i]->IsEnabled())
         {
             RestartBullet(m_bulletPool[i]);
             return m_bulletPool[i];
@@ -56,7 +56,7 @@ void BulletPool::InitializePool()
 void BulletPool::AddABulletToThePool()
 {
     Bullet* newBullet = new Bullet(m_bulletRef);
-    newBullet->SetActive(false);
+    newBullet->SetEnable(false);
     m_bulletPool.push_back(newBullet);
     AddChild(newBullet);
 }
@@ -72,7 +72,15 @@ void BulletPool::IncreaseBulletSize()
 void BulletPool::RestartBullet(Bullet* bullet)
 {
     bullet->SetPosition(0.0f, 0.0f);
-    bullet->SetActive(true);
+    bullet->SetEnable(true);
+}
+
+void BulletPool::DisableBullets()
+{
+    for(int i = 0; i < m_bulletPool.size(); i++ )
+    {
+        m_bulletPool[i]->SetEnable(false);
+    }
 }
 
 void BulletPool::ClearPool()

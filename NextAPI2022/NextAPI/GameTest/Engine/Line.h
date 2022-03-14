@@ -17,8 +17,10 @@ public:
     void SetCanCollide(bool state);
 
 private:
+    void CalculateMiddlePoint();
     Vector2 m_point1;
     Vector2 m_point2;
+    Vector2 m_middlePoint;
     Vector3 m_color = {0.0f, 1.0f, 0.0f};
     Vector3 m_defaultColor= {0.0f, 1.0f, 0.0f};
 

@@ -8,6 +8,8 @@ public:
 
     void Update(float dt) override;
 
+    void Restart();
+
 private:
     float m_time_interval = 3.0f;
     float m_start_scale = 0.0f;

@@ -1,19 +1,24 @@
 #include "stdafx.h"
 #include "StaticGameData.h"
 
+#include "../App/app.h"
+
 int StaticGameData::PlayerLives = 5;
 int StaticGameData::PlayerFuel = 9999;
 int StaticGameData::PlayerScore = 0;
 int StaticGameData::PlayerBonusScore = 0;
 bool StaticGameData::DataChanged = false;
 Player* StaticGameData::PlayerRef = nullptr;
-std::vector<FuelTank*> StaticGameData::ResourcesList;
+BulletPool* StaticGameData::PlayerBulletPool = nullptr;
+BulletPool* StaticGameData::TurretsBulletPool = nullptr;
+std::vector<Resource*> StaticGameData::ResourcesList;
 
 void StaticGameData::KillPlayer()
 {
     PlayerLives -= 1;
     PlayerRef->GoToRespawnPoint();
     DataChanged = true;
+    App::PlaySoundEffect(".\\TestData\\Explosion.wav");
 }
 
 void StaticGameData::UseFuel(int amount)

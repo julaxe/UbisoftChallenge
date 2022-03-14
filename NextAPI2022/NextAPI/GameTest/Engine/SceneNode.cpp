@@ -10,6 +10,7 @@ void SceneNode::Update(float dt)
 {
     GameObject::Update(dt);
     if(!IsActive()) return;
+    if(!IsEnabled()) return;
     UpdateChildren(dt);
 }
 
@@ -17,6 +18,7 @@ void SceneNode::Draw()
 {
     GameObject::Draw();
     if(!IsActive()) return;
+    if(!IsEnabled()) return;
     DrawChildren();
 }
 
@@ -28,10 +30,19 @@ void SceneNode::Exit()
 
 void SceneNode::SetActive(bool state)
 {
-    m_enable = state;
+    m_active = state;
     for(const auto child : m_children)
     {
         child->SetActive(state);
+    }
+}
+
+void SceneNode::SetEnable(bool state)
+{
+    m_enable = state;
+    for(const auto child : m_children)
+    {
+        child->SetEnable(state);
     }
 }
 
@@ -66,8 +77,8 @@ Vector2 SceneNode::GetWorldPosition() const
         const float parentAngle = m_parent->GetAngle();
         const float newX = m_position.x * cosf(parentAngle) - m_position.y * sinf(parentAngle);
         const float newY = m_position.x * sinf(parentAngle) + m_position.y * cosf(parentAngle);
-        worldPos.x = m_parent->GetWorldPosition().x + newX*m_parent->GetScale().x;
-        worldPos.y = m_parent->GetWorldPosition().y + newY*m_parent->GetScale().y;
+        worldPos.x = m_parent->GetWorldPosition().x + newX*m_parent->GetWorldScale().x;
+        worldPos.y = m_parent->GetWorldPosition().y + newY*m_parent->GetWorldScale().y;
     }
     return worldPos;
 }
@@ -122,7 +133,6 @@ void SceneNode::DeleteChild(SceneNode* child)
             break;
         }
     }
-    (*it)->Exit();
     m_children.erase(it);
 }
 

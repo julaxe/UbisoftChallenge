@@ -21,6 +21,8 @@ public:
     void ShootWeapon(Vector2 direction) const;
     void SetRespawnPoint(Vector2 respawnPoint);
     void GoToRespawnPoint();
+    BoxCollider* GetCollider() const {return m_collider;}
+    void SetGravity(Vector2 newGravity) const;
 
 private:
     void UpdatePositionWithRigidBody();
@@ -33,14 +35,14 @@ private:
     Entity* m_propulsion_flame;
     BoxCollider* m_collider;
     Weapon* m_weapon;
-    RigidBody* m_rigidBody;
+    RigidBody* m_rigidBody = nullptr;
     PlayerShield* m_player_shield;
     PlayerScanner* m_player_scanner;
 
     Vector2 m_respawn_point = {0.0f, 0.0f};
     
     float m_rot_speed = 0.1f;
-    float m_forward_force = 10000.0f;
+    float m_forward_force = 200.0f;
 };
 
 

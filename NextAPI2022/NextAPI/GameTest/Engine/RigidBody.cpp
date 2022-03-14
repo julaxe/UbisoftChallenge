@@ -11,7 +11,7 @@ void RigidBody::Update(float dt)
 {
     SceneNode::Update(dt);
 
-    dt *= 0.0001f;
+    dt *= 0.001f;
     const Vector2 sumForces = {m_gravityForce.x + m_external_force.x, m_gravityForce.y + m_external_force.y};
     m_acceleration = {sumForces.x * dt, sumForces.y * dt};
 

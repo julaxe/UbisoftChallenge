@@ -28,6 +28,7 @@ Entity::Entity(std::string name, const char* fileName, unsigned nColumns, unsign
 
 void Entity::Update(float dt)
 {
+    
     SceneNode::Update(dt);
     
     if (m_currentAnim >= 0)
@@ -47,7 +48,7 @@ void Entity::Update(float dt)
 void Entity::Draw()
 {
     if(!IsActive()) return;
-    
+    if(!IsEnabled()) return;
 #if APP_USE_VIRTUAL_RES
     float scalex = GetWorldScale().x / APP_VIRTUAL_WIDTH;
     float scaley = GetWorldScale().y / APP_VIRTUAL_HEIGHT;
@@ -82,8 +83,7 @@ void Entity::Draw()
     glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
 
-    //then draw children
-    DrawChildren();
+    SceneNode::Draw();
 
     if(DEBUG_ON)
     {

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Weapon.h"
 
+#include "../../StaticGameData.h"
 #include "../../../app/app.h"
 
 Weapon::Weapon()
@@ -25,9 +26,6 @@ void Weapon::Draw()
 void Weapon::Exit()
 {
     ExitChildren();
-
-    delete m_bulletPool;
-    m_bulletPool = nullptr;
 }
 
 void Weapon::Shoot(Vector2 direction) const

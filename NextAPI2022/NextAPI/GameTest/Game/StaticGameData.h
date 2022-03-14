@@ -1,6 +1,7 @@
 #pragma once
 #include "Prefabs/Player/Player.h"
 #include "Prefabs/Resources/FuelTank.h"
+#include "Prefabs/Resources/Resource.h"
 
 class StaticGameData
 {
@@ -11,7 +12,9 @@ public:
     static int PlayerBonusScore;
     static bool DataChanged;
     static Player* PlayerRef;
-    static std::vector<FuelTank*> ResourcesList;
+    static BulletPool* PlayerBulletPool;
+    static BulletPool* TurretsBulletPool;
+    static std::vector<Resource*> ResourcesList;
 
     static void KillPlayer();
     static void UseFuel(int amount);

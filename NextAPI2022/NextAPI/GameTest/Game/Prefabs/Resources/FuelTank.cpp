@@ -5,13 +5,9 @@
 
 FuelTank::FuelTank()
 {
-    m_fueltank_sprite = new Entity("sprite", ".\\TestData\\FuelTank.bmp");
-    AddChild(m_fueltank_sprite);
-    
-    StaticGameData::ResourcesList.push_back(this);
+    m_sprite = new Entity("sprite", ".\\TestData\\FuelTank.bmp");
+    AddChild(m_sprite);
+
+    m_tag = ResourceTag::FUELTANK;
 }
 
-void FuelTank::Update(float dt)
-{
-    SceneNode::Update(dt);
-}

@@ -4,6 +4,8 @@
 
 #include <complex>
 
+#include "../app/AppSettings.h"
+
 float MathManager::GetDistanceBetweenPoints(Vector2 point1, Vector2 point2)
 {
     const Vector2 difference = GetDirectionBetweenVectors(point1, point2);
@@ -36,6 +38,14 @@ Vector2 MathManager::GetDirectionBetweenVectors(Vector2 from, Vector2 destinatio
 
 Vector2 MathManager::NormalizeVector(Vector2 vector)
 {
-    float magnitude = GetMagnitudeOfVector(vector);
+    const float magnitude = GetMagnitudeOfVector(vector);
     return {vector.x / magnitude, vector.y/magnitude};
+}
+
+Vector2 MathManager::RotateVectorByAnAngle(Vector2 vector,float angle)
+{
+    angle *= PI/180.0f;
+    const float x = cosf(angle)*vector.x - sinf(angle)*vector.y;
+    const float y = sinf(angle)*vector.x + cosf(angle)*vector.y;
+    return {x,y};
 }

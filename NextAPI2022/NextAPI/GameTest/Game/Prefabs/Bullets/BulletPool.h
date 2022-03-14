@@ -11,6 +11,7 @@ public:
     void Update(float dt) override;
     void Exit() override;
     Bullet* GetAvailableBullet();
+    void DisableBullets();
 private:
     void InitializePool();
     void AddABulletToThePool();

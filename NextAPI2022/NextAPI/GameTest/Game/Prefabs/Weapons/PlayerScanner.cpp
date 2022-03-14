@@ -15,7 +15,7 @@ PlayerScanner::PlayerScanner()
     m_line2->SetColor({1.0f,1.0f,1.0f});
     AddChild(m_line2);
     
-    SetScale(1.0f,1.0f);
+    SetScale(4.0f,4.0f);
 }
 
 void PlayerScanner::SetDirection(Vector2 direction)

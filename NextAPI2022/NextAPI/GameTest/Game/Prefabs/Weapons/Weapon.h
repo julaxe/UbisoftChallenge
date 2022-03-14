@@ -8,6 +8,7 @@ class Weapon : public SceneNode
 public:
     Weapon();
 
+    BulletPool* GetBulletPool() const {return m_bulletPool;}
     void SetBulletPool(BulletPool* bullet_pool);
     void Update(float dt) override;
     void Draw() override;

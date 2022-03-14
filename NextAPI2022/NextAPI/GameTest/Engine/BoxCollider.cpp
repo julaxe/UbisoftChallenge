@@ -49,12 +49,12 @@ void BoxCollider::SetWidth(float width)
 
 float BoxCollider::GetWidth() const
 {
-    return m_width*m_parent->GetScale().x;
+    return m_width*m_parent->GetWorldScale().x;
 }
 
 float BoxCollider::GetHeight() const
 {
-    return m_height*m_parent->GetScale().y;
+    return m_height*m_parent->GetWorldScale().y;
 }
 
 void BoxCollider::SetHeight(float height)
@@ -75,6 +75,7 @@ bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
     {
         if(boxCollider == this) continue;
         if(!boxCollider->IsActive()) continue;
+        if(!boxCollider->IsEnabled()) continue;
         if(boxCollider->GetTag() == tag)
         {
             const Vector2 pos1 = {GetWorldPosition().x - GetWidth()*0.5f, GetWorldPosition().y - GetHeight()*0.5f};
@@ -93,16 +94,15 @@ bool BoxCollider::CheckCollisionWithAnotherTag(CollisionTag tag)
     return m_isColliding;
 }
 
-bool BoxCollider::OutsideGameWorld() const
+bool BoxCollider::OutsideGameWorld(float scale) const
 {
     const float posX = GetWorldPosition().x;
     const float posY = GetWorldPosition().y;
-
-    constexpr float scale = 1.2f;
+    
     if(posX > APP_VIRTUAL_WIDTH*scale ||
-        posX < -APP_VIRTUAL_WIDTH*scale ||
+        posX < APP_VIRTUAL_WIDTH - APP_VIRTUAL_WIDTH*scale ||
         posY > APP_VIRTUAL_HEIGHT*scale ||
-        posY < -APP_VIRTUAL_HEIGHT*scale)
+        posY < APP_VIRTUAL_HEIGHT-APP_VIRTUAL_HEIGHT*scale)
     {
         return true;
     }

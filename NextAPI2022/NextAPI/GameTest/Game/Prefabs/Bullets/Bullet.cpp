@@ -63,14 +63,14 @@ void Bullet::Update(float dt)
 
     SetPosition(newX, newY);
 
-    if(m_collider->OutsideGameWorld())
+    if(m_collider->OutsideGameWorld(1.2f))
     {
-        SetActive(false);
+        SetEnable(false);
         return;
     }
     if(m_collider->IsBeingHitByAnExternalSource())
     {
-        SetActive(false);
+        SetEnable(false);
         m_collider->SetCollidingExternal(false);
         return;
     }
@@ -78,7 +78,7 @@ void Bullet::Update(float dt)
     {
         if(m_collider->CheckCollisionWithAnotherTag(tag))
         {
-            SetActive(false);
+            SetEnable(false);
             return;
         }
     }

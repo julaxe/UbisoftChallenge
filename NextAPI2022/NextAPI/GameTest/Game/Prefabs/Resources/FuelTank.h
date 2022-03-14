@@ -1,16 +1,8 @@
 #pragma once
-#include "../../../Engine/BoxCollider.h"
-#include "../../../Engine/Entity.h"
-#include "../../../Engine/SceneNode.h"
+#include "Resource.h"
 
-class FuelTank : public SceneNode
+class FuelTank : public Resource
 {
 public:
     FuelTank();
-
-    void Update(float dt) override;
-
-private:
-    Entity* m_fueltank_sprite;
-    
 };

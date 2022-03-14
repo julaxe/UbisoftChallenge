@@ -16,7 +16,7 @@ PlayerShield::PlayerShield()
     m_shield->BuildPlanet(m_points);
     m_shield->SetCollision(false);
     m_shield->SetColor({0.8f,0.8f,1.0f});
-    m_shield->SetScale(2.0f,2.0f);
+    m_shield->SetScale(8.0f,8.0f);
     AddChild(m_shield);
 }
 

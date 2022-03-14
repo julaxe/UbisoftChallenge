@@ -18,6 +18,6 @@ private:
     Vector2 m_acceleration = {0.0f, 0.0f};
     Vector2 m_gravityForce = {0.0f, 0.0f};
 
-    float m_maxSpeed = 1.0f;
+    float m_maxSpeed = 2.0f;
     Vector2 m_external_force = {0.0f, 0.0f};
 };

@@ -27,13 +27,16 @@ void Turret::Update(float dt)
     SceneNode::Update(dt);
 
     if(!IsActive())return;
+    if(!IsEnabled())return;
     
     if(CheckForCollision())
     {
         m_health -= 40.0f;
         if(m_health <= 0.0f)
         {
-            SetActive(false);
+            SetEnable(false);
+            App::PlaySoundEffect(".\\TestData\\Explosion2.wav");
+            StaticGameData::PlayerScore += 20;
             //set score or something here
         }
     }
@@ -78,6 +81,10 @@ void Turret::SetCurrentHealth(float health)
 
 void Turret::ShootBullet() const
 {
+    if(!m_weapon->GetBulletPool())
+    {
+        m_weapon->SetBulletPool(StaticGameData::TurretsBulletPool);
+    }
     const Vector2 direction = MathManager::GetDirectionBetweenVectors(GetWorldPosition(), StaticGameData::PlayerRef->GetWorldPosition());
     m_weapon->Shoot(direction);
     App::PlaySoundEffect(".\\TestData\\laser5.wav");
@@ -86,7 +93,7 @@ void Turret::ShootBullet() const
 bool Turret::IsPlayerInRange() const
 {
     const float distance = MathManager::GetDistanceBetweenPoints(GetWorldPosition(), StaticGameData::PlayerRef->GetWorldPosition());
-    if(distance < m_detection_radius)
+    if(distance < m_detection_radius * m_parent->GetWorldScale().x)
     {
         return true;
     }

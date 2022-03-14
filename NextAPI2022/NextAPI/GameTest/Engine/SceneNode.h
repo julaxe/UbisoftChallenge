@@ -17,7 +17,9 @@ public:
     
     //scene
     void SetActive(bool state);
-    bool IsActive() const {return m_enable;}
+    bool IsActive() const {return m_active;}
+    void SetEnable(bool state);
+    bool IsEnabled() const {return m_enable;}
     void SetName(std::string name);
     std::string GetName() const {return m_name;}
     
@@ -46,7 +48,8 @@ public:
 
 protected:
     //scene
-    bool m_enable = true;
+    bool m_active= true;
+    bool m_enable= true;
     std::string m_name = "";
     
     //transform

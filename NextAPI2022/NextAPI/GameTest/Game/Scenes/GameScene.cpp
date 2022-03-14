@@ -6,14 +6,38 @@
 
 GameScene::GameScene()
 {
-    m_stage = new StageBase();
-    AddRootNode(m_stage);
+    CollisionManager::ClearCollisionList();
+    StaticGameData::ResourcesList.clear();
+    
+    m_root = new SceneNode();
+    AddRootNode(m_root);
     
     m_player_interface = new PlayerInterface();
-    AddRootNode(m_player_interface);
+    m_root->AddChild(m_player_interface);
+
+    Bullet* playerBullet = new Bullet(".\\TestData\\PlayerBullet.bmp",3,1);
+    playerBullet->SetTag(CollisionTag::PLAYERBULLET);
+    m_player_bullet_pool = new BulletPool(new Bullet(*playerBullet));
+    m_root->AddChild(m_player_bullet_pool);
+    StaticGameData::PlayerBulletPool = m_player_bullet_pool;
+
+    Bullet* turretBullet = new Bullet(".\\TestData\\TurretBullet.bmp",1,1);
+    turretBullet->SetTag(CollisionTag::ENEMYBULLET);
+    turretBullet->SetActive(false);
+    m_turrets_bullet_pool = new BulletPool(new Bullet(*turretBullet));
+    m_root->AddChild(m_turrets_bullet_pool);
+    StaticGameData::TurretsBulletPool = m_turrets_bullet_pool;
+    
+    m_player = new Player();
+    m_root->AddChild(m_player);
+    m_player->SetRespawnPoint({0.0f,0.0f});
+
+    m_stage_manager = new StageManager();
+    m_root->AddChild(m_stage_manager);
+    
     
     m_pause_manager = new PauseManager();
-    AddRootNode(m_pause_manager);
+    m_root->AddChild(m_pause_manager);
 }
 
 void GameScene::Exit()
