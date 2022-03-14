@@ -11,6 +11,7 @@ bool StaticGameData::DataChanged = false;
 Player* StaticGameData::PlayerRef = nullptr;
 BulletPool* StaticGameData::PlayerBulletPool = nullptr;
 BulletPool* StaticGameData::TurretsBulletPool = nullptr;
+BulletPool* StaticGameData::BossBulletPool = nullptr;
 std::vector<Resource*> StaticGameData::ResourcesList;
 
 void StaticGameData::KillPlayer()

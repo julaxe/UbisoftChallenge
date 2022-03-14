@@ -23,6 +23,7 @@ private:
     Player* m_player;
     BulletPool* m_player_bullet_pool;
     BulletPool* m_turrets_bullet_pool;
+    BulletPool* m_boss_bullet_pool;
     StageManager* m_stage_manager;
     PlayerInterface* m_player_interface;
 

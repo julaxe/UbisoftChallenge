@@ -30,6 +30,7 @@ public:
     void SetPlayer(Player* player);
     void SetPlayerBulletPool(BulletPool* bullet_pool);
     void SetTurretsBulletsPool(BulletPool* bullet_pool);
+    void SetBossBulletPool(BulletPool* bullet_pool);
 
     virtual void InitializeStage();
     void InitializeStaticData();
@@ -51,6 +52,7 @@ protected:
     Player* m_player;
     BulletPool* m_player_bullet_pool;
     BulletPool* m_turrets_bullet_pool;
+    BulletPool* m_boss_bullet_pool;
 
     std::vector<Turret*> m_list_turrets;
     std::vector<FuelTank*> m_list_fuelTanks;

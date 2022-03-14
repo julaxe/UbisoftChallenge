@@ -33,6 +33,9 @@ void Stage2::InitializeStage()
 }
 bool Stage2::MissionComplete()
 {
-    if(m_corePlanet->IsEnabled())return false;
-    return false;
+    if(m_corePlanet->IsEnabled())
+    {
+        return false;
+    }
+    return true;
 }

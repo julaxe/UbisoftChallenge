@@ -198,7 +198,9 @@
     <ClInclude Include="Engine\Text.h" />
     <ClInclude Include="Game\Prefabs\Bullets\Bullet.h" />
     <ClInclude Include="Game\Prefabs\Bullets\BulletPool.h" />
+    <ClInclude Include="Game\Prefabs\Enemies\BossHearth.h" />
     <ClInclude Include="Game\Prefabs\Enemies\Turret.h" />
+    <ClInclude Include="Game\Prefabs\Planets\BossPlanet.h" />
     <ClInclude Include="Game\Prefabs\Planets\CircleWithHolePlanet.h" />
     <ClInclude Include="Game\Prefabs\Planets\Planet.h" />
     <ClInclude Include="Game\Prefabs\Planets\RotatingPlanet.h" />
@@ -207,6 +209,7 @@
     <ClInclude Include="Game\Prefabs\Resources\CorePlanet.h" />
     <ClInclude Include="Game\Prefabs\Resources\FuelTank.h" />
     <ClInclude Include="Game\Prefabs\Resources\Resource.h" />
+    <ClInclude Include="Game\Prefabs\Stages\BossStage.h" />
     <ClInclude Include="Game\Prefabs\Stages\Stage1.h" />
     <ClInclude Include="Game\Prefabs\Stages\Stage2.h" />
     <ClInclude Include="Game\Prefabs\Stages\Stage3.h" />
@@ -266,7 +269,9 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\Prefabs\Bullets\Bullet.cpp" />
     <ClCompile Include="Game\Prefabs\Bullets\BulletPool.cpp" />
+    <ClCompile Include="Game\Prefabs\Enemies\BossHearth.cpp" />
     <ClCompile Include="Game\Prefabs\Enemies\Turret.cpp" />
+    <ClCompile Include="Game\Prefabs\Planets\BossPlanet.cpp" />
     <ClCompile Include="Game\Prefabs\Planets\CircleWithHolePlanet.cpp" />
     <ClCompile Include="Game\Prefabs\Planets\Planet.cpp" />
     <ClCompile Include="Game\Prefabs\Planets\RotatingPlanet.cpp" />
@@ -275,6 +280,7 @@
     <ClCompile Include="Game\Prefabs\Resources\CorePlanet.cpp" />
     <ClCompile Include="Game\Prefabs\Resources\FuelTank.cpp" />
     <ClCompile Include="Game\Prefabs\Resources\Resource.cpp" />
+    <ClCompile Include="Game\Prefabs\Stages\BossStage.cpp" />
     <ClCompile Include="Game\Prefabs\Stages\Stage1.cpp" />
     <ClCompile Include="Game\Prefabs\Stages\Stage2.cpp" />
     <ClCompile Include="Game\Prefabs\Stages\Stage3.cpp" />

@@ -33,7 +33,7 @@ WormHole::WormHole(StageBase* stage_owner)
 void WormHole::Update(float dt)
 {
     SceneNode::Update(dt);
-    SetUnlocked(m_unlocked);
+    if(!m_unlocked) return;
     if(m_collider->CheckCollisionWithAnotherTag(CollisionTag::PLAYER))
     {
         TravelToNextStage();
@@ -44,6 +44,7 @@ void WormHole::SetStageDestination(StageBase* stage)
 {
     m_stage_destination = stage;
     SetEnable(true);
+    SetUnlocked(false);
 }
 
 void WormHole::SetUnlocked(bool state)
@@ -59,7 +60,6 @@ void WormHole::SetUnlocked(bool state)
         m_wormhole_sprite_unlocked->SetEnable(false);
         m_wormhole_sprite_locked->SetEnable(true);
     }
-    
 }
 
 void WormHole::AssignPlayerLocationNextStage()

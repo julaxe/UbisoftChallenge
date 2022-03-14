@@ -89,6 +89,12 @@ void StageBase::SetTurretsBulletsPool(BulletPool* bullet_pool)
     m_turrets_bullet_pool->ChangeParent(m_root);
 }
 
+void StageBase::SetBossBulletPool(BulletPool* bullet_pool)
+{
+    m_boss_bullet_pool = bullet_pool;
+    m_boss_bullet_pool->ChangeParent(m_root);
+}
+
 void StageBase::InitializeStage()
 {
     InitializeStaticData();
@@ -101,6 +107,7 @@ void StageBase::InitializeStaticData()
 {
     StaticGameData::PlayerBulletPool->DisableBullets();
     StaticGameData::TurretsBulletPool->DisableBullets();
+    StaticGameData::BossBulletPool->DisableBullets();
     
     SetPlayer(StaticGameData::PlayerRef);
     SetPlayerBulletPool(StaticGameData::PlayerBulletPool);

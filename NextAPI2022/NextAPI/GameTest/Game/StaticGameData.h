@@ -14,6 +14,7 @@ public:
     static Player* PlayerRef;
     static BulletPool* PlayerBulletPool;
     static BulletPool* TurretsBulletPool;
+    static BulletPool* BossBulletPool;
     static std::vector<Resource*> ResourcesList;
 
     static void KillPlayer();

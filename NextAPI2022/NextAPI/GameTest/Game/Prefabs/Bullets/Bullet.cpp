@@ -57,6 +57,7 @@ void Bullet::Update(float dt)
 {
     SceneNode::Update(dt);
     if(!IsActive()) return;
+    if(!IsEnabled()) return;
     
     const float newX = GetPosition().x + m_speed * (dt * 0.0001f) * m_direction.x;
     const float newY = GetPosition().y + m_speed * (dt * 0.0001f) * m_direction.y;

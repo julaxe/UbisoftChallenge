@@ -2,6 +2,7 @@
 #include "MainMenuScene.h"
 
 #include "../StaticGameData.h"
+#include "../../app/app.h"
 #include "../../Engine/Entity.h"
 #include "../../Engine/Button.h"
 #include "../../Engine/CollisionManager.h"
@@ -40,6 +41,8 @@ MainMenuScene::MainMenuScene()
 
     m_pause_manager = new PauseManager();
     m_root->AddChild(m_pause_manager);
+    
+    App::PlaySoundEffect(".\\TestData\\MainMenu.wav", true);
 }
 
 void MainMenuScene::Exit()

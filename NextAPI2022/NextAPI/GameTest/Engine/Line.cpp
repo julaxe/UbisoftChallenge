@@ -12,7 +12,7 @@ Line::Line(Vector2 point1, Vector2 point2)
     m_point2 = point2;
 
     CalculateMiddlePoint();
-    m_WakeUpRadius = MathManager::GetDistanceBetweenPoints(point1, point2) * 0.8f;
+    m_WakeUpRadius = MathManager::GetDistanceBetweenPoints(point1, point2) * 0.5f;
 }
 
 void Line::Update(float dt)

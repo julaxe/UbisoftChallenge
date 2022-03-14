@@ -4,6 +4,7 @@
 #include <ctime>
 #include <random>
 
+#include "BossStage.h"
 #include "Stage1.h"
 #include "Stage2.h"
 #include "Stage3.h"
@@ -26,17 +27,17 @@ StageBase* StageManager::GetANewStage(StageBase* newStage)
 void StageManager::SetupAvailableStages()
 {
     //8
+    m_available_stages.push_back(GetANewStage(new Stage1()));
+    m_available_stages.push_back(GetANewStage(new StageBase()));
+    m_available_stages.push_back(GetANewStage(new Stage2()));
+    m_available_stages.push_back(GetANewStage(new Stage1()));
+    m_available_stages.push_back(GetANewStage(new StageBase()));
     m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
-    m_available_stages.push_back(GetANewStage(new Stage3()));
+    m_available_stages.push_back(GetANewStage(new Stage2()));
+    m_available_stages.push_back(GetANewStage(new StageBase()));
 
     ShuffleStages();
-    m_boss_stage = GetANewStage(new StageBase());
+    m_boss_stage = GetANewStage(new BossStage());
 }
 
 void StageManager::AddBossStageToTheGrid()

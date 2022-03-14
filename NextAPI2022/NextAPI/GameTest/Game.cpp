@@ -16,7 +16,7 @@
 void Init()
 {
 	srand((unsigned int)time(NULL));
-	SceneManager::AddScene(new GameScene());
+	SceneManager::AddScene(new SplashScreen());
 }
 
 void HandleInput()
